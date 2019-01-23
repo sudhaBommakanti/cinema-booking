@@ -40,10 +40,8 @@ module.exports = class Server {
       movies: require('./schemas/Movie'),
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
+      tickets: require('./schemas/Ticket'),
     };
-
-    // create all necessary rest routes for the models
-    new CreateRestRoutes(app, db, models);
 
     // Start the web server
     app.listen(3000, () => console.log('Listening on port 3000'));
