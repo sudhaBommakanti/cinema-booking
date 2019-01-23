@@ -1,1 +1,0 @@
-class Book extends REST {}
