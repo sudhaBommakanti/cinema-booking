@@ -32,9 +32,21 @@ async function runMovieTest() {
   });
 
   // Save
-  console.log(await ticketPrice.save());
-}
-
+  console.log(await showtime.save());
 }
 
 runMovieTest();
+
+async function runTicketPriceTest() {
+  let ticketPrice = new Ticketprice({
+    normalFare: 85,
+    pensioners: 75,
+    children: 65
+    
+  });
+
+  // Save
+  console.log(await ticketPrice.save());
+}
+
+runTicketPriceTest();
