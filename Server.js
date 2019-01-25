@@ -40,9 +40,9 @@ module.exports = class Server {
     app.use(express.static('www'));
 
     app.get('/autoload-js-and-templates', (req, res) => {
-      let files = fs.readdirSync(path.join(__dirname, '/www/js'));
+      let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
       files = files.filter(x => x.substr(-3) === '.js')
-      let html = files.map(x => `<script src="/js/${x}"></script>`).join('');
+      let html = files.map(x => `<script src="/js/components/${x}"></script>`).join('');
       html += files.filter(x => fs.existsSync(path.join(
           __dirname, '/www/templates', x.split('.js').join('.html')
       ))).map(x => `<script src="/template-to-js/${
