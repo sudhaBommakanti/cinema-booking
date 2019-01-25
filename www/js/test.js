@@ -31,7 +31,9 @@ async function runMovieTest() {
     time: "15:30"
   });
 
-  console.log(await showtime.save());
+  // Save
+  console.log(await ticketPrice.save());
+}
 
 }
 

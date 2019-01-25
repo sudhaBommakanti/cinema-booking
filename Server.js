@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CreateRestRoutes = require('./CreateRestRoutes');
+const connectionString = require('./connectionString.js');
 
 module.exports = class Server {
 
@@ -16,8 +17,7 @@ module.exports = class Server {
 
   connectToDb() {
     return new Promise((resolve, reject) => {
-      let dbName = 'cinema'
-      mongoose.connect(`mongodb://localhost/${dbName}`);
+      mongoose.connect(connectionString, { useNewUrlParser: true });
       global.db = mongoose.connection;
       db.on('error', () => reject('Could not connect to DB'));
       db.once('open', () => resolve('Connected to DB'));
@@ -40,10 +40,13 @@ module.exports = class Server {
       movies: require('./schemas/Movie'),
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
+      ticketprices: require('./schemas/Ticketprice'),
+
     };
 
     // create all necessary rest routes for the models
     new CreateRestRoutes(app, db, models);
+  
 
     // Start the web server
     app.listen(3000, () => console.log('Listening on port 3000'));
