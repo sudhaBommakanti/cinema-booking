@@ -2,8 +2,8 @@ async function testLogin(){
  
   // credentials we want to login with
   let login = new Login({
-    email: 'svante@skibidi.com',
-    password: 'yallayallakebabåtalla'
+    email: 'pontus@skibidi.com',
+    password: '123abc'
   });
  
   // try to login
@@ -22,4 +22,4 @@ async function testLogout(){
  
 testLogin();
 //testCheckLogin();
-/* testLogout(); */
+// testLogout();
