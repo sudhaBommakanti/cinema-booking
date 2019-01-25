@@ -1,3 +1,3 @@
-let time = new Showtime();
+/*let time = new Showtime();
 
-time.createShowtimes();
+time.createShowtimes();*/
