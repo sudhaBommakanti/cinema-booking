@@ -40,6 +40,8 @@ module.exports = class Server {
       movies: require('./schemas/Movie'),
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
+      ticketprices: require('./schemas/Ticketprice'),
+
     };
 
     // create all necessary rest routes for the models
