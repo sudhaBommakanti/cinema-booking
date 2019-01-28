@@ -7,9 +7,12 @@ class Ticket extends REST {
         ref: 'Showtime'
       }],
       seats: [Number],
-      prices: [Number]
+      ticketPrice: [{
+        type: Schema.Types.ObjectId,
+        ref: 'ticketpriceSchema'
+      }],
     });
-   console.log(await ticket.save());
+    console.log(await ticket.save());
 
   }
 }
