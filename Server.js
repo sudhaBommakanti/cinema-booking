@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CreateRestRoutes = require('./CreateRestRoutes');
 const connectionString = require('./connectionString.js');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = class Server {
 
@@ -24,6 +26,8 @@ module.exports = class Server {
     });
   }
 
+  
+
   startWebServer() {
 
     // Create a web server
@@ -35,6 +39,30 @@ module.exports = class Server {
     // Serve static files from www
     app.use(express.static('www'));
 
+    app.get('/autoload-js-and-templates', (req, res) => {
+      let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
+      files = files.filter(x => x.substr(-3) === '.js')
+      let html = files.map(x => `<script src="/js/components/${x}"></script>`).join('');
+      html += files.filter(x => fs.existsSync(path.join(
+          __dirname, '/www/templates', x.split('.js').join('.html')
+      ))).map(x => `<script src="/template-to-js/${
+        x.split('.js').join('.html')}"></script>`).join('');
+      res.send(`document.write('${html}')`);
+    });
+    
+    app.get('/template-to-js/:template', (req, res) => {
+      let html = fs.readFileSync(path.join(
+        __dirname, '/www/templates', req.params.template));
+      html = req.params.template.split('.html')[0] +
+        '.prototype.render = function(){ return `\n' + html + '\n`};'
+      res.send(html);
+    });
+    
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '/www/index.html'));
+    });
+
+
     // Set keys to names of rest routes
     const models = {
       movies: require('./schemas/Movie'),
@@ -42,6 +70,9 @@ module.exports = class Server {
       showtimes: require('./schemas/Showtime'),
       tickets: require('./schemas/Ticket'),
     };
+
+
+
     // create all necessary rest routes for the models
     new CreateRestRoutes(app, db, models);
   

@@ -15,8 +15,9 @@ class Auditorium extends REST {
             seatsPerRow: [3, 4, 5]
         });
 
-        console.log(await auditorium.save());
+        console.log(await smallAuditorium.save());
+        console.log(await bigAuditorium.save());
+        console.log(await vipAuditorium.save());
     }
 }
 
-Auditorium.generateAuditorium();
