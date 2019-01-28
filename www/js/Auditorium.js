@@ -1,30 +1,38 @@
 class Auditorium extends REST {
     static async generateAuditorium() {
-        let smallAuditorium = new Auditorium({
-            name: 'Lilla salongen',
-            seatsPerRow: [
-                { row1: [6] },
-                { row2: [8] },
-                { row3: [9] },
-                { row4: [10] },
-                { row5: [10] },
-                { row6: [12] }
-            ]
-        });
+        // Här skapar jag en ny instans av klassen Auditorium.
+        // Där skickas in ett objekt i dess konstruktor. Konstruktorn i new Auditorium är detta "()"
 
-        let bigAuditorium = new Auditorium({
-            name: 'Stora salongen',
-            seatsPerRow: [8, 9, 10, 10, 10, 10, 12, 12]
-        });
+        await smallAuditorium.save();
 
-        let vipAuditorium = new Auditorium({
-            name: 'VIP salongen',
-            seatsPerRow: [3, 4, 5]
-        });
+        // här invokar/kallar jag på funktionen jag skapade nedan som tar in
+        // smallAuditorium-objektet ovan.
 
+        this.getSeats(smallAuditorium);
         console.log(await smallAuditorium.save());
-        console.log(await bigAuditorium.save());
-        console.log(await vipAuditorium.save());
+        // console.log(await bigAuditorium.save());
+        // console.log(await vipAuditorium.save());
+    }
+
+    // skapar en funktion som tar en inparameter.
+    // Jag behöver inparametern för att få tillgång till smallAuditorium-objektet i funktionen ovan.
+    // jag kollar så att salongens namn är === lilla salongen
+    // loopar genom smallAuditorium.seats som är en array med 6 objekt som i sin tur har arrays med
+    // seats. Jag appendar alla seats för varje row
+
+    static getSeats(auditorium) {
+        $('<h2>')
+            .text(auditorium.name)
+            .before($('#row-wrapper'));
+
+        for (let row = 0; row < auditorium.seatsPerRow.length; row++) {
+            let rowTag = $('<div class="seat-row">').appendTo($('#row-wrapper'));
+
+            for (let seat = 0; seat < row; seat++) {
+                rowTag.append(`<div class="seat" data-num="${seat}">`);
+            }
+        }
     }
 }
 
+Auditorium.generateAuditorium();
