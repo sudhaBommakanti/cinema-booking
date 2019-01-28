@@ -81,8 +81,10 @@ module.exports = class Server {
       movies: require('./schemas/Movie'),
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
+      tickets: require('./schemas/Ticket'),
       users: require('./schemas/User'),
       ticketprices: require('./schemas/Ticketprice')
+
     };
 
 
