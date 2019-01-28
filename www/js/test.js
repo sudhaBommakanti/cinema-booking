@@ -2,7 +2,7 @@ async function testLogin(){
  
   // credentials we want to login with
   let login = new Login({
-    email: 'pontus@skibidi.com',
+    email: 'joe@skibidi.com',
     password: '123abc'
   });
  

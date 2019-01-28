@@ -4,8 +4,8 @@ class Login extends REST {
     return 'login/';
   }
 
-  constructor(props) {
-    super(props);
+  async delete() {
     this._id = 1;
+    return super.delete();
   }
 }
