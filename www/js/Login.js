@@ -1,5 +1,9 @@
 class Login extends REST {
 
+  constructor(){
+    super();
+    this.addRoute('/login', 'Logga in');
+  }
   static get baseRoute() {
     return 'login/';
   }
