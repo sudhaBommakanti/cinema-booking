@@ -82,6 +82,7 @@ module.exports = class Server {
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
       users: require('./schemas/User'),
+      ticketprices: require('./schemas/Ticketprice')
     };
 
 
