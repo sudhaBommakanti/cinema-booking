@@ -1,3 +1,4 @@
+
 async function runTests() {
 
   // Create a new author
@@ -50,3 +51,7 @@ async function runTicketPriceTest() {
 }
 
 runTicketPriceTest();
+
+/*let time = new Showtime();
+
+time.createShowtimes();*/
