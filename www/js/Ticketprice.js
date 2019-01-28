@@ -1,0 +1,1 @@
+class Ticketprice extends REST {}

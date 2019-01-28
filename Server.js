@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CreateRestRoutes = require('./CreateRestRoutes');
 const connectionString = require('./connectionString.js');
+const LoginHandler = require('./LoginHandler');
+const settings = require('./settings.json');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const fs = require('fs');
 const path = require('path');
 
@@ -20,6 +24,7 @@ module.exports = class Server {
   connectToDb() {
     return new Promise((resolve, reject) => {
       mongoose.connect(connectionString, { useNewUrlParser: true });
+      global.passwordSalt = settings.passwordSalt;
       global.db = mongoose.connection;
       db.on('error', () => reject('Could not connect to DB'));
       db.once('open', () => resolve('Connected to DB'));
@@ -39,6 +44,14 @@ module.exports = class Server {
     // Serve static files from www
     app.use(express.static('www'));
 
+    app.use(session({
+      secret: settings.cookieSecret,
+      resave: true,
+      saveUninitialized: true,
+      store: new MongoStore({
+        mongooseConnection: db
+      })
+    }));
     app.get('/autoload-js-and-templates', (req, res) => {
       let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
       files = files.filter(x => x.substr(-3) === '.js')
@@ -69,13 +82,18 @@ module.exports = class Server {
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
       tickets: require('./schemas/Ticket'),
+      users: require('./schemas/User'),
+      ticketprices: require('./schemas/Ticketprice')
+
     };
 
 
 
     // create all necessary rest routes for the models
     new CreateRestRoutes(app, db, models);
-  
+
+    new LoginHandler(app, models.users);
+
 
     // Start the web server
     app.listen(3000, () => console.log('Listening on port 3000'));
