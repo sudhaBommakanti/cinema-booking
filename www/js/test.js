@@ -1,3 +1,29 @@
+async function testLogin(){
+ 
+  // credentials we want to login with
+  let login = new Login({
+    email: 'joe@skibidi.com',
+    password: '123abc'
+  });
+ 
+  // try to login
+  console.log(await login.save());
+ 
+}
+ 
+async function testCheckLogin(){
+  console.log(await Login.find());
+}
+ 
+async function testLogout(){
+  let loginObj = new Login();
+  console.log(await loginObj.delete());
+}
+ 
+testLogin();
+//testCheckLogin();
+// testLogout();
+
 async function runTests() {
 
   // Create a new author
@@ -50,3 +76,7 @@ async function runTicketPriceTest() {
 }
 
 runTicketPriceTest();
+
+/*let time = new Showtime();
+
+time.createShowtimes();*/
