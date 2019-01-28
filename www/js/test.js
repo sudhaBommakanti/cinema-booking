@@ -23,3 +23,6 @@ async function testLogout(){
 testLogin();
 //testCheckLogin();
 // testLogout();
+/*let time = new Showtime();
+
+time.createShowtimes();*/
