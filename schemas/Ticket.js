@@ -8,9 +8,9 @@ let ticketSchema = new Schema({
     ref: 'Showtime'
   }],
   "seats": [Number],
-  "ticketPrice": [{
+  "ticketprice": [{
     type: Schema.Types.ObjectId,
-    ref: 'ticketpriceSchema'
+    ref: 'Ticketprice'
   }]
 });
 
