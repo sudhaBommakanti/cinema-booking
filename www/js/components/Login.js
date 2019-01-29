@@ -1,4 +1,4 @@
-class Login extends REST {
+class Login extends Component {
 
   constructor(){
     super();

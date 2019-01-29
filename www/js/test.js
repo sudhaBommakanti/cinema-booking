@@ -20,6 +20,6 @@ async function testLogout(){
   console.log(await loginObj.delete());
 }
  
-testLogin();
+//testLogin();
 //testCheckLogin();
 // testLogout();
