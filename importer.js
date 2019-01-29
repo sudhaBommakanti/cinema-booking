@@ -4,14 +4,16 @@
 const mongoose = require('mongoose');
 
 // Connect to db
+let connectionString = 'mongodb://cinema:cinema123@cinema-shard-00-00-rlvpw.mongodb.net:27017,cinema-shard-00-01-rlvpw.mongodb.net:27017,cinema-shard-00-02-rlvpw.mongodb.net:27017/test?ssl=true&replicaSet=cinema-shard-0&authSource=admin&retryWrites=true';
+module.exports = connectionString;
 mongoose.connect(connectionString, { useNewUrlParser: true });
 global.db = mongoose.connection;
 db.on('error', () => reject('Could not connect to DB'));
-db.once('open', () => resolve('Connected to DB'));
+db.once('open', () => importJsonDataToDb());
+
 
 // Load the Mongoose model
-let Auditorium = require('./Auditorium');
-let Movie = require('./Movie');
+let Auditorium = require('./schemas/Auditorium');
 
 // Load the json data from file
 let auditoriumData = require('./auditorium.json');

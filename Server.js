@@ -68,14 +68,7 @@ module.exports = class Server {
                 '\n`};';
             res.send(html);
         });
-
-        app.get('/json/auditoriums', async(req, res) => {
-            let auditoriums = await Auditoriums.find();
-            console.log(auditoriums);
-
-            res.json(auditoriums);
-        });
-
+        
         // Set keys to names of rest routes
         const models = {
             movies: require('./schemas/Movie'),
