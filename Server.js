@@ -7,78 +7,90 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = class Server {
+    constructor() {
+        this.start();
+    }
 
-  constructor() {
-    this.start();
-  }
+    async start() {
+        await this.connectToDb();
+        await this.startWebServer();
+    }
 
-  async start() {
-    await this.connectToDb();
-    await this.startWebServer();
-  }
+    connectToDb() {
+        return new Promise((resolve, reject) => {
+            mongoose.connect(connectionString, { useNewUrlParser: true });
+            global.db = mongoose.connection;
+            db.on('error', () => reject('Could not connect to DB'));
+            db.once('open', () => resolve('Connected to DB'));
+        });
+    }
 
-  connectToDb() {
-    return new Promise((resolve, reject) => {
-      mongoose.connect(connectionString, { useNewUrlParser: true });
-      global.db = mongoose.connection;
-      db.on('error', () => reject('Could not connect to DB'));
-      db.once('open', () => resolve('Connected to DB'));
-    });
-  }
+    startWebServer() {
+        // Create a web server
+        const app = express();
 
-  
+        // Add body-parser to our requests
+        app.use(bodyParser.json());
 
-  startWebServer() {
+        // Serve static files from www
+        app.use(express.static('www'));
 
-    // Create a web server
-    const app = express();
+        app.get('/autoload-js-and-templates', (req, res) => {
+            let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
+            files = files.filter(x => x.substr(-3) === '.js');
+            let html = files
+                .map(x => `<script src="/js/components/${x}"></script>`)
+                .join('');
+            html += files
+                .filter(x =>
+                    fs.existsSync(
+                        path.join(__dirname, '/www/templates', x.split('.js').join('.html'))
+                    )
+                )
+                .map(
+                    x =>
+                    `<script src="/template-to-js/${x
+              .split('.js')
+              .join('.html')}"></script>`
+                )
+                .join('');
+            res.send(`document.write('${html}')`);
+        });
 
-    // Add body-parser to our requests
-    app.use(bodyParser.json());
+        app.get('/template-to-js/:template', (req, res) => {
+            let html = fs.readFileSync(
+                path.join(__dirname, '/www/templates', req.params.template)
+            );
+            html =
+                req.params.template.split('.html')[0] +
+                '.prototype.render = function(){ return `\n' +
+                html +
+                '\n`};';
+            res.send(html);
+        });
 
-    // Serve static files from www
-    app.use(express.static('www'));
+        app.get('/json/auditoriums', async(req, res) => {
+            let auditoriums = await Auditoriums.find();
+            console.log(auditoriums);
 
-    app.get('/autoload-js-and-templates', (req, res) => {
-      let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
-      files = files.filter(x => x.substr(-3) === '.js')
-      let html = files.map(x => `<script src="/js/components/${x}"></script>`).join('');
-      html += files.filter(x => fs.existsSync(path.join(
-          __dirname, '/www/templates', x.split('.js').join('.html')
-      ))).map(x => `<script src="/template-to-js/${
-        x.split('.js').join('.html')}"></script>`).join('');
-      res.send(`document.write('${html}')`);
-    });
-    
-    app.get('/template-to-js/:template', (req, res) => {
-      let html = fs.readFileSync(path.join(
-        __dirname, '/www/templates', req.params.template));
-      html = req.params.template.split('.html')[0] +
-        '.prototype.render = function(){ return `\n' + html + '\n`};'
-      res.send(html);
-    });
-    
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '/www/index.html'));
-    });
+            res.json(auditoriums);
+        });
 
+        // Set keys to names of rest routes
+        const models = {
+            movies: require('./schemas/Movie'),
+            auditoriums: require('./schemas/Auditorium'),
+            showtimes: require('./schemas/Showtime')
+        };
 
-    // Set keys to names of rest routes
-    const models = {
-      movies: require('./schemas/Movie'),
-      auditoriums: require('./schemas/Auditorium'),
-      showtimes: require('./schemas/Showtime'),
-    };
+        // create all necessary rest routes for the models
+        new CreateRestRoutes(app, db, models);
 
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, '/www/index.html'));
+        });
 
-
-    // create all necessary rest routes for the models
-    new CreateRestRoutes(app, db, models);
-  
-
-    // Start the web server
-    app.listen(3000, () => console.log('Listening on port 3000'));
-
-  }
-
-}
+        // Start the web server
+        app.listen(3000, () => console.log('Listening on port 3000'));
+    }
+};
