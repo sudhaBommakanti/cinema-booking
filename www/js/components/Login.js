@@ -30,6 +30,11 @@ class Login extends Component {
       email: $('.email').val(),
       password: $('.password').val()
     });
-    await login.save();
+    let result = await login.save();
+    if(result.error){
+      // replace with something smoother
+      alert(result.error);
+    }
+    App.app.checkIfLoggedIn();
   }
 }

@@ -4,6 +4,7 @@ class App extends Component {
       super();
       this.navBar = new NavBar();
       this.pageContent = new PageContent();
+      App.app = this; // make this globally reacheable through App.app
       // only in the App class:
       new Router(this.pageContent);
       $('body').html(this.render());
@@ -17,9 +18,5 @@ class App extends Component {
       this.navBar.render();
     }
 
-    async loggedInRender(){
-      
-    }
-  
   }
   
