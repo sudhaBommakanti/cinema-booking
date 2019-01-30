@@ -5,6 +5,11 @@ const CreateRestRoutes = require('./CreateRestRoutes');
 const connectionString = require('./connectionString.js');
 const fs = require('fs');
 const path = require('path');
+const Sass = require('./sass');
+const config = require('./config.json');
+for (let conf of config.sass) {
+    new Sass(conf);
+}
 
 module.exports = class Server {
     constructor() {
@@ -68,7 +73,7 @@ module.exports = class Server {
                 '\n`};';
             res.send(html);
         });
-        
+
         // Set keys to names of rest routes
         const models = {
             movies: require('./schemas/Movie'),
