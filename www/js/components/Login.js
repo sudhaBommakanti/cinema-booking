@@ -23,6 +23,8 @@ class Login extends Component {
       password: $('.password').val()
     });
     await user.save();
+    $('.email').val('')
+    $('.password').val('')
   }
 
   async login() {
@@ -31,10 +33,12 @@ class Login extends Component {
       password: $('.password').val()
     });
     let result = await login.save();
-    if(result.error){
+    if (result.error) {
       // replace with something smoother
       alert(result.error);
     }
     App.app.checkIfLoggedIn();
+    $('.email').val('')
+    $('.password').val('')
   }
 }
