@@ -1,6 +1,5 @@
 class Login extends Component {
-
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.addRoute('/login', 'Logga in');
     this.addEvents({
