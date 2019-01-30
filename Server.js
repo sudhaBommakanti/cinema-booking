@@ -3,41 +3,66 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const CreateRestRoutes = require('./CreateRestRoutes');
 const connectionString = require('./connectionString.js');
+const LoginHandler = require('./LoginHandler');
+const settings = require('./settings.json');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const fs = require('fs');
 const path = require('path');
+const Sass = require('./sass');
+const config = require('./config.json');
+for (let conf of config.sass) {
+    new Sass(conf);
+}
 
 module.exports = class Server {
+    constructor() {
+        this.start();
+    }
 
-  constructor() {
-    this.start();
-  }
+    async start() {
+        await this.connectToDb();
+        await this.startWebServer();
+    }
 
-  async start() {
-    await this.connectToDb();
-    await this.startWebServer();
-  }
+    connectToDb() {
+        return new Promise((resolve, reject) => {
+            mongoose.connect(connectionString, { useNewUrlParser: true });
+            global.db = mongoose.connection;
+            db.on('error', () => reject('Could not connect to DB'));
+            db.once('open', () => resolve('Connected to DB'));
+        });
+    }
 
   connectToDb() {
     return new Promise((resolve, reject) => {
       mongoose.connect(connectionString, { useNewUrlParser: true });
+      global.passwordSalt = settings.passwordSalt;
       global.db = mongoose.connection;
       db.on('error', () => reject('Could not connect to DB'));
       db.once('open', () => resolve('Connected to DB'));
     });
   }
 
-  
+  startWebServer(){
 
-  startWebServer() {
-
-    // Create a web server
     const app = express();
-
+    
+    
     // Add body-parser to our requests
     app.use(bodyParser.json());
 
-    // Serve static files from www
+     // Serve static files from www
     app.use(express.static('www'));
+
+    app.use(session({
+      secret: settings.cookieSecret,
+      resave: true,
+      saveUninitialized: true,
+      store: new MongoStore({
+        mongooseConnection: db
+      })
+    }));
 
     app.get('/autoload-js-and-templates', (req, res) => {
       let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
@@ -58,17 +83,14 @@ module.exports = class Server {
       res.send(html);
     });
     
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '/www/index.html'));
-    });
-
-
     // Set keys to names of rest routes
     const models = {
       movies: require('./schemas/Movie'),
       auditoriums: require('./schemas/Auditorium'),
       showtimes: require('./schemas/Showtime'),
-      ticketprices: require('./schemas/Ticketprice'),
+      tickets: require('./schemas/Ticket'),
+      users: require('./schemas/User'),
+      ticketprices: require('./schemas/Ticketprice')
 
     };
 
@@ -76,7 +98,18 @@ module.exports = class Server {
 
     // create all necessary rest routes for the models
     new CreateRestRoutes(app, db, models);
-  
+
+    new LoginHandler(app, models.users);
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '/www/index.html'));
+      });
+
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '/www/index.html'));
+    });
+
 
     // Start the web server
     app.listen(3000, () => console.log('Listening on port 3000'));
