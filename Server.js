@@ -44,52 +44,13 @@ module.exports = class Server {
     });
   }
 
+  startWebServer(){
+
         // Add body-parser to our requests
         app.use(bodyParser.json());
 
         // Serve static files from www
         app.use(express.static('www'));
-
-        app.get('/autoload-js-and-templates', (req, res) => {
-            let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
-            files = files.filter(x => x.substr(-3) === '.js');
-            let html = files
-                .map(x => `<script src="/js/components/${x}"></script>`)
-                .join('');
-            html += files
-                .filter(x =>
-                    fs.existsSync(
-                        path.join(__dirname, '/www/templates', x.split('.js').join('.html'))
-                    )
-                )
-                .map(
-                    x =>
-                    `<script src="/template-to-js/${x
-              .split('.js')
-              .join('.html')}"></script>`
-                )
-                .join('');
-            res.send(`document.write('${html}')`);
-        });
-
-        app.get('/template-to-js/:template', (req, res) => {
-            let html = fs.readFileSync(
-                path.join(__dirname, '/www/templates', req.params.template)
-            );
-            html =
-                req.params.template.split('.html')[0] +
-                '.prototype.render = function(){ return `\n' +
-                html +
-                '\n`};';
-            res.send(html);
-        });
-
-        // Set keys to names of rest routes
-        const models = {
-            movies: require('./schemas/Movie'),
-            auditoriums: require('./schemas/Auditorium'),
-            showtimes: require('./schemas/Showtime')
-        };
 
     app.use(session({
       secret: settings.cookieSecret,
@@ -99,6 +60,7 @@ module.exports = class Server {
         mongooseConnection: db
       })
     }));
+
     app.get('/autoload-js-and-templates', (req, res) => {
       let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
       files = files.filter(x => x.substr(-3) === '.js')
@@ -118,14 +80,6 @@ module.exports = class Server {
       res.send(html);
     });
     
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '/www/index.html'));
-    });
-
-        app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, '/www/index.html'));
-        });
-
     // Set keys to names of rest routes
     const models = {
       movies: require('./schemas/Movie'),
@@ -143,6 +97,10 @@ module.exports = class Server {
     new CreateRestRoutes(app, db, models);
 
     new LoginHandler(app, models.users);
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '/www/index.html'));
+      });
 
 
     // Start the web server
