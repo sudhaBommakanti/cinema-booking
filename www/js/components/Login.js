@@ -4,7 +4,7 @@ class Login extends Component {
     super(props);
     this.addRoute('/login', 'Logga in');
     this.addEvents({
-      'click .submit-btn': 'testLogin',
+      'click .submit-btn': 'login',
       'click .register-btn': 'register'
     })
   }
@@ -25,8 +25,7 @@ class Login extends Component {
     await user.save();
   }
 
-  async testLogin() {
-
+  async login() {
     let login = new Login({
       email: $('.email').val(),
       password: $('.password').val()

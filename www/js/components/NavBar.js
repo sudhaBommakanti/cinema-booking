@@ -14,6 +14,8 @@ class NavBar extends Component {
     logout(){
       alert("LOGOUT");
       // create new Login object and call delete on it to logout
+      let logout = new Login({});
+      logout.delete();
     }
   
   }
