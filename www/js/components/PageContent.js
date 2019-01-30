@@ -3,10 +3,6 @@ class PageContent extends Component {
         super();
         this.startPage = new StartPage();
         this.auditorium = new Auditorium();
-
-    constructor(){
-      super();
-      this.startPage = new StartPage();
-      this.login = new Login();
+        this.login = new Login();
     }
 }
