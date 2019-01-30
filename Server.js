@@ -46,11 +46,14 @@ module.exports = class Server {
 
   startWebServer(){
 
-        // Add body-parser to our requests
-        app.use(bodyParser.json());
+    const app = express();
+    
+    
+    // Add body-parser to our requests
+    app.use(bodyParser.json());
 
-        // Serve static files from www
-        app.use(express.static('www'));
+     // Serve static files from www
+    app.use(express.static('www'));
 
     app.use(session({
       secret: settings.cookieSecret,
