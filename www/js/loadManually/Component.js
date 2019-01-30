@@ -1,7 +1,7 @@
 class Component extends REST {
 
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
       this.addUniqueId();
       this.addRenderMethodToArrays();
       // Replace render method
@@ -14,7 +14,7 @@ class Component extends REST {
   
     addUniqueId(){
       Component.co = Component.co || 0;
-      this._id = Component.co;
+      this.__componentId = Component.co;
       Component.co++;
     }
   
@@ -26,7 +26,7 @@ class Component extends REST {
         throw(new Error('Provide exactly 1 root element'));
       }
       // if already in DOM then replace it
-      let inDOM = $(`[data-instance-id=${this._id}]`);
+      let inDOM = $(`[data-instance-id=${this.__componentId}]`);
       if(inDOM.length > 0){
         inDOM.replaceWith(elements);
       }
@@ -41,7 +41,7 @@ class Component extends REST {
         document.title =  Component.orgPageTitle + ': ' + this.title;
       }
       // add the instance id
-      elements.attr('data-instance-id', this._id);
+      elements.attr('data-instance-id', this.__componentId);
       // return as a string
       return elements[0].outerHTML;
     }
@@ -69,7 +69,7 @@ class Component extends REST {
         let methodName = eventMap[event];
         let type = event.split(' ').shift();
         let selector = event.substr(event.indexOf(' ') + 1);
-        $(document).on(type,`[data-instance-id=${this._id}] ${selector}`, (e) => {
+        $(document).on(type,`[data-instance-id=${this.__componentId}] ${selector}`, (e) => {
           return this[methodName](e);
         });
       }
@@ -82,7 +82,7 @@ class Component extends REST {
     }
   
     get baseEl(){
-      return $(`[data-instance-id=${this._id}]`);
+      return $(`[data-instance-id=${this.__componentId}]`);
     }
   
   }
