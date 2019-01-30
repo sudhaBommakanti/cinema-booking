@@ -22,7 +22,7 @@ class Login extends Component {
       email: $('.email').val(),
       password: $('.password').val()
     });
-    console.log(await user.save())
+    await user.save();
   }
 
   async testLogin() {
@@ -31,8 +31,6 @@ class Login extends Component {
       email: $('.email').val(),
       password: $('.password').val()
     });
-    console.log(login);
-
-    console.log(await login.save());
+    await login.save();
   }
 }

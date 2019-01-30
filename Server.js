@@ -70,11 +70,6 @@ module.exports = class Server {
         '.prototype.render = function(){ return `\n' + html + '\n`};'
       res.send(html);
     });
-    
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '/www/index.html'));
-    });
-
 
     // Set keys to names of rest routes
     const models = {
@@ -93,6 +88,11 @@ module.exports = class Server {
     new CreateRestRoutes(app, db, models);
 
     new LoginHandler(app, models.users);
+
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '/www/index.html'));
+    });
 
 
     // Start the web server
