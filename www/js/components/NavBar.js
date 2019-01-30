@@ -4,7 +4,8 @@ class NavBar extends Component {
     super();
     this.navItems = [
       new NavItem('Start', '/'),
-      new NavItem('Logga In', '/login')
+      new NavItem('Logga In', '/login'),
+      new NavItem('Platser', '/auditoriums')
     ];
     this.addEvents({
       'click .loggedin': 'logout'

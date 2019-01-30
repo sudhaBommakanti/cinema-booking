@@ -9,17 +9,30 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const fs = require('fs');
 const path = require('path');
+const Sass = require('./sass');
+const config = require('./config.json');
+for (let conf of config.sass) {
+    new Sass(conf);
+}
 
 module.exports = class Server {
+    constructor() {
+        this.start();
+    }
 
-  constructor() {
-    this.start();
-  }
+    async start() {
+        await this.connectToDb();
+        await this.startWebServer();
+    }
 
-  async start() {
-    await this.connectToDb();
-    await this.startWebServer();
-  }
+    connectToDb() {
+        return new Promise((resolve, reject) => {
+            mongoose.connect(connectionString, { useNewUrlParser: true });
+            global.db = mongoose.connection;
+            db.on('error', () => reject('Could not connect to DB'));
+            db.once('open', () => resolve('Connected to DB'));
+        });
+    }
 
   connectToDb() {
     return new Promise((resolve, reject) => {
@@ -31,17 +44,15 @@ module.exports = class Server {
     });
   }
 
-  
+  startWebServer(){
 
-  startWebServer() {
-
-    // Create a web server
     const app = express();
-
+    
+    
     // Add body-parser to our requests
     app.use(bodyParser.json());
 
-    // Serve static files from www
+     // Serve static files from www
     app.use(express.static('www'));
 
     app.use(session({
@@ -52,6 +63,7 @@ module.exports = class Server {
         mongooseConnection: db
       })
     }));
+
     app.get('/autoload-js-and-templates', (req, res) => {
       let files = fs.readdirSync(path.join(__dirname, '/www/js/components'));
       files = files.filter(x => x.substr(-3) === '.js')
@@ -70,7 +82,7 @@ module.exports = class Server {
         '.prototype.render = function(){ return `\n' + html + '\n`};'
       res.send(html);
     });
-
+    
     // Set keys to names of rest routes
     const models = {
       movies: require('./schemas/Movie'),
@@ -88,6 +100,10 @@ module.exports = class Server {
     new CreateRestRoutes(app, db, models);
 
     new LoginHandler(app, models.users);
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '/www/index.html'));
+      });
 
 
     app.get('*', (req, res) => {

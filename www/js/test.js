@@ -1,13 +1,6 @@
+/*let time = new Showtime();
 
-async function testCheckLogin() {
-  console.log(await Login.find());
-}
+time.createShowtimes();*/
 
-async function testLogout() {
-  let loginObj = new Login();
-  console.log(await loginObj.delete());
-}
-
-//testLogin();
-//testCheckLogin();
-// testLogout();
+//let test = new Auditorium();
+//test.getAuditoriums();
