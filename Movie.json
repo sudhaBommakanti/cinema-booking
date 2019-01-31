@@ -1,242 +1,186 @@
 [
-    {
-      "title": "Call me by your name",
-      "productionCountries": [
-        "Italien",
-        "USA"
-      ],
-      "productionYear": 2017,
-      "length": 132,
-      "genre": "Drama",
-      "distributor": "UIP",
-      "language": "engelska",
-      "subtitles": "svenska",
-      "director": "Luca Guadagnino",
-      "actors": [
-        "Armie Hammer",
-        "Timothée Chalamet",
-        "Michael Stuhlbarg"
-      ],
-      "description": "<p>Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj.</p><p>Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.</p>",
-      "images": [
-         "call-me-poster1.jpg",
-         "call-me-poster2.jpg"
-      ],
-      "youtubeTrailers": [
-        "Z9AYPxH5NTM"
-      ], 
-      "reviews": [
-        {
-          "source": "Sydsvenskan",
-          "quote": "ett drama berättat med stor ömhet",
-          "stars": 4,
-          "max": 5
-        },
-        {
-          "source": "Svenska Dagbladet",
-          "quote": "en film att förälska sig i",
-          "stars": 5,
-          "max": 5
-        },
-        {
-          "source": "DN",
-          "quote": "en het romans i åttiotalskostym",
-          "stars": 4,
-          "max": 5
-        }
-      ]
-    },
-
-    {
-        "title": "Call me by your name",
-        "productionCountries": [
-          "Italien",
-          "USA"
-        ],
-        "productionYear": 2017,
-        "length": 132,
-        "genre": "Drama",
-        "distributor": "UIP",
-        "language": "engelska",
-        "subtitles": "svenska",
-        "director": "Luca Guadagnino",
-        "actors": [
-          "Armie Hammer",
-          "Timothée Chalamet",
-          "Michael Stuhlbarg"
-        ],
-        "description": "<p>Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj.</p><p>Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.</p>",
-        "images": [
-           "call-me-poster1.jpg",
-           "call-me-poster2.jpg"
-        ],
-        "youtubeTrailers": [
-          "Z9AYPxH5NTM"
-        ], 
-        "reviews": [
-          {
-            "source": "Sydsvenskan",
-            "quote": "ett drama berättat med stor ömhet",
-            "stars": 4,
-            "max": 5
-          },
-          {
-            "source": "Svenska Dagbladet",
-            "quote": "en film att förälska sig i",
-            "stars": 5,
-            "max": 5
-          },
-          {
-            "source": "DN",
-            "quote": "en het romans i åttiotalskostym",
-            "stars": 4,
-            "max": 5
-          }
-        ]
-      },
-
+  {
+    "title": "The Greatest Showman",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2017,
+    "length": 105,
+    "genre": "Drama",
+    "distributor": "Twentith Century Fox",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Michael Gracey",
+    "actors": [
+      "Hugh Jackman",
+      "Rebecca Ferguson",
+      "Zac Efron",
+      "Michelle Williams"
+    ],
+    "description": "<p>Firar födseln av show buisness och berättar om en visionär som kom från ingenting till att skapa spektakulära fenomen och bli världskänd</p>",
+    "images": [
+       ""
+    ],
+    "youtubeTrailers": [
+      "AXCTMGYUg9A"
+    ], 
+    "reviews": [
       {
-        "title": "Call me by your name",
-        "productionCountries": [
-          "Italien",
-          "USA"
-        ],
-        "productionYear": 2017,
-        "length": 132,
-        "genre": "Drama",
-        "distributor": "UIP",
-        "language": "engelska",
-        "subtitles": "svenska",
-        "director": "Luca Guadagnino",
-        "actors": [
-          "Armie Hammer",
-          "Timothée Chalamet",
-          "Michael Stuhlbarg"
-        ],
-        "description": "<p>Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj.</p><p>Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.</p>",
-        "images": [
-           "call-me-poster1.jpg",
-           "call-me-poster2.jpg"
-        ],
-        "youtubeTrailers": [
-          "Z9AYPxH5NTM"
-        ], 
-        "reviews": [
-          {
-            "source": "Sydsvenskan",
-            "quote": "ett drama berättat med stor ömhet",
-            "stars": 4,
-            "max": 5
-          },
-          {
-            "source": "Svenska Dagbladet",
-            "quote": "en film att förälska sig i",
-            "stars": 5,
-            "max": 5
-          },
-          {
-            "source": "DN",
-            "quote": "en het romans i åttiotalskostym",
-            "stars": 4,
-            "max": 5
-          }
-        ]
-      },
-
-      {
-        "title": "Call me by your name",
-        "productionCountries": [
-          "Italien",
-          "USA"
-        ],
-        "productionYear": 2017,
-        "length": 132,
-        "genre": "Drama",
-        "distributor": "UIP",
-        "language": "engelska",
-        "subtitles": "svenska",
-        "director": "Luca Guadagnino",
-        "actors": [
-          "Armie Hammer",
-          "Timothée Chalamet",
-          "Michael Stuhlbarg"
-        ],
-        "description": "<p>Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj.</p><p>Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.</p>",
-        "images": [
-           "call-me-poster1.jpg",
-           "call-me-poster2.jpg"
-        ],
-        "youtubeTrailers": [
-          "Z9AYPxH5NTM"
-        ], 
-        "reviews": [
-          {
-            "source": "Sydsvenskan",
-            "quote": "ett drama berättat med stor ömhet",
-            "stars": 4,
-            "max": 5
-          },
-          {
-            "source": "Svenska Dagbladet",
-            "quote": "en film att förälska sig i",
-            "stars": 5,
-            "max": 5
-          },
-          {
-            "source": "DN",
-            "quote": "en het romans i åttiotalskostym",
-            "stars": 4,
-            "max": 5
-          }
-        ]
-      },
-
-      {
-        "title": "Call me by your name",
-        "productionCountries": [
-          "Italien",
-          "USA"
-        ],
-        "productionYear": 2017,
-        "length": 132,
-        "genre": "Drama",
-        "distributor": "UIP",
-        "language": "engelska",
-        "subtitles": "svenska",
-        "director": "Luca Guadagnino",
-        "actors": [
-          "Armie Hammer",
-          "Timothée Chalamet",
-          "Michael Stuhlbarg"
-        ],
-        "description": "<p>Filmen utspelas i norra Italien sommaren 1983. En ung amerikansk-italienare blir förälskad i en amerikansk student som kommer för att studera och bo hos hans familj.</p><p>Tillsammans upplever de en oförglömlig sommar - full av musik, mat och kärlek - som för evigt kommer att förändra dem.</p>",
-        "images": [
-           "call-me-poster1.jpg",
-           "call-me-poster2.jpg"
-        ],
-        "youtubeTrailers": [
-          "Z9AYPxH5NTM"
-        ], 
-        "reviews": [
-          {
-            "source": "Sydsvenskan",
-            "quote": "ett drama berättat med stor ömhet",
-            "stars": 4,
-            "max": 5
-          },
-          {
-            "source": "Svenska Dagbladet",
-            "quote": "en film att förälska sig i",
-            "stars": 5,
-            "max": 5
-          },
-          {
-            "source": "DN",
-            "quote": "en het romans i åttiotalskostym",
-            "stars": 4,
-            "max": 5
-          }
-        ]
+        "source": "DN",
+        "quote": "Fantastiskt!!",
+        "stars": 4,
+        "max": 5
       }
-  ]
-  
+    ]
+  },
+
+  {
+    "title": "Birdbox",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2018,
+    "length": 124,
+    "genre": "Horror",
+    "distributor": "Netflix",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Susanne Bier",
+    "actors": [
+      "Sandra Bullock",
+      "Trevante Rhodes",
+      "John Malkovich",
+      "Sarah Paulson",
+      "Jacki Weaver"
+    ],
+    "description": "<p>En mamma och hennes två barn försöker hitta säkerhet när något ont drabbar folk.</p>",
+    "images": [
+       ""
+    ],
+    "youtubeTrailers": [
+      "o2AsIXSh2xo"
+    ], 
+    "reviews": [
+       
+      {
+        "source": "Svenska Dagbladet",
+        "quote": "Wow!!",
+        "stars": 4,
+        "max": 5
+      },
+      {
+        "source": "Sydsvenskan",
+        "quote": "Sandra Bullock is the shit!",
+        "stars": 5,
+        "max": 5
+      }
+    ]
+  },
+
+  {
+    "title": "A Star is born",
+    "productionCountries": [
+      "USA"
+    ],
+    "productionYear": 2018,
+    "length": 136,
+    "genre": "Romance",
+    "distributor": "Warner Bros",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Bradley Cooper",
+    "actors": [
+      "Bradley Cooper",
+      "Lady Gaga",
+      "Sam Elliot",
+      "Andrew Dice Clay"
+    ],
+    "description": "<p>En musiker hjälper en ung sångare hitta berömmelse.</p>",
+    "images": [
+       ""
+    ],
+    "youtubeTrailers": [
+      "nSbzyEJ8X9E"
+    ], 
+    "reviews": [
+      {
+        "source": "Aftonbladet",
+        "quote": "Bradley gör det igen!!",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  },
+
+  {
+    "title": "Me before you",
+    "productionCountries": [
+      "United Kingdom",
+      "USA"
+    ],
+    "productionYear": 2016,
+    "length": 106,
+    "genre": "Romance",
+    "distributor": "Metro-Goldwyn-Mayer",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Thea Sharrock",
+    "actors": [
+      "Sam Claflin",
+      "Vanessa Kirby",
+      "Emilia Clarke"
+    ],
+    "description": "<p>En tjej i en liten stad formar ett speciellt förhållande med en paralyserad man hon tar hand om.</p>",
+    "images": [
+       ""
+    ],
+    "youtubeTrailers": [
+      "T0MmkG_nG1U"
+    ], 
+    "reviews": [
+      {
+        "source": "Expressen",
+        "quote": "Bra trevlig film!",
+        "stars": 4,
+        "max": 5
+      }
+    ]
+  },
+
+  {
+    "title": "Armageddon",
+    "productionCountries": [
+      "Italien",
+      "USA"
+    ],
+    "productionYear": 1998,
+    "length": 151,
+    "genre": "Action",
+    "distributor": "Touchstone Pictures",
+    "language": "engelska",
+    "subtitles": "svenska",
+    "director": "Michael Bay",
+    "actors": [
+      "Bruce Willis",
+      "Ben Affleck",
+      "Peter Stormare",
+      "Liv Tyler",
+      "Steve Buscemi"
+    ],
+    "description": "<p>Brave men, women and a crazy russian saves the world!.</p>",
+    "images": [
+       ""
+    ],
+    "youtubeTrailers": [
+      "PSrmvsvLzbY"
+    ], 
+    "reviews": [
+      {
+        "source": "Göteborgs Posten",
+        "quote": "Helt fantastisk film, en klassiker!!",
+        "stars": 5,
+        "max": 5
+      }
+    ]
+  }
+]
