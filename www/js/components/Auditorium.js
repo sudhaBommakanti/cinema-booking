@@ -1,8 +1,9 @@
 class Auditorium extends Component {
-    constructor() {
-        super();
-        this.addRoute('/auditoriums', 'Välj plats!');
-        this.auditoriums = [];
+    constructor(props) {
+        super(props);
+        this.addRoute('/auditoriums/' + this.name , 'Välj plats!');
+        
+        
     }
  
     

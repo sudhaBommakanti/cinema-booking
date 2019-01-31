@@ -17,5 +17,9 @@ class App extends Component {
       App.loggedInUserEmail = (App.loggedInUser || {}).email;
       this.navBar.render();
     }
+
+    async getAllAuditoriums(){
+      this.auditoriums = await Auditorium.find();
+    }
  
   }
