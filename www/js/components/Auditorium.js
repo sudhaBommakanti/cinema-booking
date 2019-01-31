@@ -12,7 +12,7 @@ class Auditorium extends Component {
 
 
 
- /* 
+ /* Fanny och hamids gamla kod ************************************************************************************
 
  for (var audio in auditoriums) {
             // auditoriums[audio] <-- == varje objekt som i sig innehåller allt;
@@ -38,4 +38,4 @@ fanny() {
         // och str får du ut på skärmen geno att kalla på metoden som du gjort i templaten
         return str;
     }
-*/
+**********************************************************************************************************************/

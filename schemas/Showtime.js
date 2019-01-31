@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let showtimeSchema = new Schema({
- "auditorium": {type: Schema.Types.ObjectId, ref: 'Auditorium'},
+ "auditorium": String, // Ja denna ska nuemera va string p.g.a det som finns i Showtime.js (Components)
  "film": {type: Schema.Types.ObjectId, ref: 'Movie'},
  "date": String,
  "time": String
