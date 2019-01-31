@@ -1,6 +1,7 @@
 class Showtime extends Component {
     constructor(props){
         super(props)
+        this.addRoute('/showtime', 'Showtimes');
         this.addEvents({'click' : 'chooseMe'});
     }
 

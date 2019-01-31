@@ -4,7 +4,7 @@ class NavBar extends Component {
       this.navItems = [
         new NavItem('Start', '/'),
         new NavItem('Logga In', '/login'),
-        new NavItem('Boka biljetter', '/booking'),
+        new NavItem('Boka biljetter', '/showtime'),
         new NavItem('Platser', '/auditoriums')
       ];
       this.addEvents({
