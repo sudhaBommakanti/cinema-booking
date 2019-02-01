@@ -4,6 +4,6 @@ class PageContent extends Component {
         this.startPage = new StartPage();
         this.auditorium = new Auditorium();
         this.login = new Login();
-        this.showtime = new Showtime();
+        this.booking = new Booking();
     }
  }
