@@ -11,8 +11,6 @@ class Showtime extends Component {
     }
 }
 
-
-
 /* Tomas gamla kod som kan användas: exempel 
 
 async getShowtimes() {
