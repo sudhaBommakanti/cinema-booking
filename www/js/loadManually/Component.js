@@ -17,6 +17,11 @@ class Component extends REST {
       this.__componentId = Component.co;
       Component.co++;
     }
+
+    _errorWrap(x){
+      return `<pre class="alert alert-danger">${x}</pre>`;
+    }
+  
   
     _render(){
       // convert html string to jQuery elements

@@ -20,7 +20,8 @@ class Booking extends Component {
     // Add property on each movie with all showtimes for it
      for (let movie of this.movies) {
       movie.showtimes = await Showtime.find(`.find({film:"${movie.title}"})`);
-     //movie.actors = await Movie.find(`.find({actor:"${movie.actor}"})`);
+        
+      //  movie.showtimes = await Showtime.find().populate('film').exec();
      await console.log(movie.showtimes)
 
     } 
