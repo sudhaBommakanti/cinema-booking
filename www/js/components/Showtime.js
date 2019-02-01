@@ -1,1 +1,5 @@
-class Showtime extends Component {}
+class Showtime extends Component {
+    constructor(props){
+        super(props)
+    }
+}
