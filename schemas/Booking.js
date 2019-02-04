@@ -8,18 +8,18 @@ let bookingSchema = new Schema({
   "userId": { type: Schema.Types.ObjectId, ref: 'User' }
 })
 // Here we add a pre save hook that will create a unique booking number
-bookingSchema.pre('save', async () => {
+bookingSchema.pre('save', async function () {
   if (this.bookingNum) {
     return
   }
   // write code here to generate a booking number
-  let characters = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789'
-
+  let characters = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789';
+  let uniqueId;
   do {
 
-    let uniqueId = '';
+    uniqueId = '';
     for (let i = 0; i < 5; i++) {
-      uniqueNum += characters.charAt(Math.floor(Math.random() * characters.length));
+      uniqueId += characters.charAt(Math.floor(Math.random() * characters.length));
     }
 
   } while ((await models.users.find({ bookingNum: uniqueId })).length > 0)
