@@ -8,6 +8,6 @@ class BookingSystem extends Component {
 
     async getAuditoriums() {
         this.auditoriums = await Auditorium.find();
-        console.log(this.auditoriums);
+        this.render();
     }
 }
