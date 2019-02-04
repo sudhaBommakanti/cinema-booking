@@ -1,18 +1,7 @@
 class Auditorium extends Component {
-  constructor(props) {
-    super(props);
-    this.addRoute('/auditoriums/' + this.name, 'Välj plats!');
-    this.auditoriums = [];
-  }
-
-  async getSeats() {
-    this.auditoriums = await Auditorium.find();
-  }
-
-  generateSeats() {
-    
-  }
-
+    constructor(props) {
+        super(props);
+    }
 }
 
 /* Fanny och hamids gamla kod ************************************************************************************
