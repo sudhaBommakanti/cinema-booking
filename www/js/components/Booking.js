@@ -2,7 +2,10 @@ class Booking extends Component {
   constructor(props) {
     super(props)
     this.addRoute('/showtime', 'Showtimes');
-    this.addEvents({ 'click': 'chooseMe' });
+    this.addEvents({ 
+        'click': 'chooseMe',
+        'click .selectable' : 'clicked'    
+    });
     this.movies = [];
 
     this.getShowtimes();
@@ -25,10 +28,16 @@ class Booking extends Component {
         movie.showtimes = movie.showtimes.map(x => new Showtime(x));
     }
 
-    console.log(this.movies);
+    //console.log(this.movies);
 
     // Rerender the view to show the data we got from the DB
     this.render();
   }
 
+  clicked(e){
+    
+      let test;
+      test = $(e.currentTarget).attr('data-id');
+      console.log(test)
+  }
 }
