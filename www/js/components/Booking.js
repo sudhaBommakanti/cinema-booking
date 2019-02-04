@@ -14,17 +14,16 @@ class Booking extends Component {
   }
   async getShowtimes() {
 
-    // Get all movies from DB
-    this.movies = await Movie.find();
 
-    // Add property on each movie with all showtimes for it
-     for (let movie of this.movies) {
-      movie.showtimes = await Showtime.find(`.find({film:"${movie.title}"})`);
-        
-      //  movie.showtimes = await Showtime.find().populate('film').exec();
-     await console.log(movie.showtimes)
 
-    } 
+
+    // Get all movies from DB and populate showtimes for them
+    this.movies = await Movie.find(`.find().populate('showtimes').exec()`);
+
+    // Convert all showtime objects to real instances of Showtime
+    for(let movie of this.movies){
+        movie.showtimes = movie.showtimes.map(x => new Showtime(x));
+    }
 
     console.log(this.movies);
 
@@ -33,22 +32,3 @@ class Booking extends Component {
   }
 
 }
-
-/* Tomas gamla kod som kan användas: exempel
-
-async getShowtimes() {
-
-        // Get all movies from DB
-        this.movies = await Movie.find();
-
-        // Add property on each movie with all showtimes for it
-        for(let movie of this.movies){
-            movie.showtimes = await Showtime.find(`.find({film:"${movie.title}"})`);
-        }
-
-        console.log(this.movies)
-
-        // Rerender the view to show the data we got from the DB
-        this.render();
-
-*/
