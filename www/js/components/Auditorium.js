@@ -1,29 +1,30 @@
 class Auditorium extends Component {
     constructor(props) {
         super(props);
-        this.addRoute('/auditoriums/' + this.name , 'Välj plats!');
-        
-        
-    }
- 
-    
-    
- }
-
-
-
- /* Fanny och hamids gamla kod ************************************************************************************
-
- for (var audio in auditoriums) {
-            // auditoriums[audio] <-- == varje objekt som i sig innehåller allt;
-            // Pusha hela objekt till arrayen
-            this.auditoriums.push(auditoriums[audio]);
+        this.seats = [];
+        for (let numberOfSeatsInTheRow of this.seatsPerRow) {
+            let seatsInRow = [];
+            while (seatsInRow.length < numberOfSeatsInTheRow) {
+                seatsInRow.push(new Seat());
+            }
+            this.seats.push(seatsInRow);
         }
-        // för att köra igenom ändringarna på klassen
-        this.render();
+        console.log(this.seats);
     }
+}
 
-    */
+/* Fanny och hamids gamla kod ************************************************************************************
+
+for (var audio in auditoriums) {
+           // auditoriums[audio] <-- == varje objekt som i sig innehåller allt;
+           // Pusha hela objekt till arrayen
+           this.auditoriums.push(auditoriums[audio]);
+       }
+       // för att köra igenom ändringarna på klassen
+       this.render();
+   }
+
+   */
 
 /*
 
