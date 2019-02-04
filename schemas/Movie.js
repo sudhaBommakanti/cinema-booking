@@ -23,6 +23,21 @@ let movieSchema = new Schema({
      "max": Number
    }
  ]
+}, { 
+  toJSON: { virtuals: true }
 });
+
+movieSchema.virtual('showtimes', {
+  ref: 'Showtime',
+  localField: 'title',
+  foreignField: 'film',
+  justOne: false
+});
+
+
+/*movieSchema.pre('find', function() {
+  console.log("HEJ")
+  this.populate('showtimes');
+});*/
 
 module.exports = db.model('Movie', movieSchema);
