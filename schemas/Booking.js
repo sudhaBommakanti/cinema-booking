@@ -22,3 +22,5 @@ bookingSchema.pre('save', () => {
 
   return this.bookingNum = uniqueId;
 });
+
+module.exports = db.model('Booking', bookingSchema);
