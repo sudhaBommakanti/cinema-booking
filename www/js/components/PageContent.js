@@ -5,5 +5,6 @@ class PageContent extends Component {
         this.login = new Login();
         this.showtime = new Showtime();
         this.bookingsystem = new BookingSystem();
+        this.booking = new Booking();
     }
 }
