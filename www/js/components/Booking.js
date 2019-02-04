@@ -40,4 +40,5 @@ class Booking extends Component {
       test = $(e.currentTarget).attr('data-id');
       console.log(test)
   }
+  
 }
