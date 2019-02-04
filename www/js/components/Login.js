@@ -6,6 +6,7 @@ class Login extends Component {
       'click .submit-btn': 'login',
       'click .register-btn': 'register'
     })
+    this.loggedIn = false;
   }
   static get baseRoute() {
     return 'login/';
@@ -37,7 +38,9 @@ class Login extends Component {
       alert(result.error);
     }
     App.app.checkIfLoggedIn();
-    $('.email').val('')
-    $('.password').val('')
+    //$('.email').val('')
+    //$('.password').val('')
+    this.loggedIn = true;
+    this.render();
   }
  }
