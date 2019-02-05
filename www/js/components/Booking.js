@@ -1,10 +1,12 @@
 class Booking extends Component {
   constructor(props) {
     super(props)
+    this.headline = true;
+    this.clickedShowing;
     this.addRoute('/showtime', 'Showtimes');
     this.addEvents({ 
         'click': 'chooseMe',
-        'click .selectable' : 'clicked'    
+        'click .headline' : 'hideHeadline',    
     });
     this.movies = [];
 
@@ -36,9 +38,16 @@ class Booking extends Component {
 
   clicked(e){
     
-      let test;
-      test = $(e.currentTarget).attr('data-id');
-      console.log(test)
+      let idValue;
+      idValue = $(e.currentTarget).attr('data-id');
+      console.log(idValue)
+      return idValue;
+  }
+
+  hideHeadline(e){
+    this.headline = false;
+    this.clickedShowing = e.currentTarget.parentNode.outerHTML;
+    this.render();
   }
   
 }
