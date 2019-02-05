@@ -1,9 +1,11 @@
-class Movieinfo extends Component {
-    constructor() {
-        super();
-        this.addRoute('/film', 'Film');
-        this.addEvents({ 'click .movie-title': 'showMovieInfo' });
+class MovieInfo extends Component {
+    constructor(props) {
+        super(props);
+        this.movie = new Movie();
+        this.getThemDamnMovies();
     }
 
-    showMovieInfo() {}
+    async getThemDamnMovies() {
+        this.movies = await Movie.find();
+    }
 }
