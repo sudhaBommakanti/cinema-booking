@@ -16,7 +16,7 @@ class BookingSystem extends Component {
     }
 
     async getAuditoriums() {
-        this.auditoriums = await Auditorium.find();
+        App.auditoriums = await Auditorium.find();
         this.render();
     }
 }
