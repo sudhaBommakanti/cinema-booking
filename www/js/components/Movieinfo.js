@@ -1,11 +1,16 @@
 class MovieInfo extends Component {
     constructor(props) {
         super(props);
-        this.movie = new Movie();
-        this.getThemDamnMovies();
+        this.addRoute(/film\/(.*)/);
     }
 
-    async getThemDamnMovies() {
-        this.movies = await Movie.find();
+    async mount() {
+        console.log('HEJ');
+        // Get the id from the route
+        let id = this.getRouteParts()[0];
+        // Get the movie with that id
+        this.movie = await Movie.find(id);
+        console.log(this.movie);
+        this.render();
     }
 }

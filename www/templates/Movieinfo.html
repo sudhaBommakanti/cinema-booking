@@ -1,2 +1,6 @@
 <div>
+    ${!this.movie || !this.movie.title ? 'Ingen film med detta id' : `
+    <h2>${this.movie.title}</h2>
+    <p>${this.movie.description}</p>
+    `}
 </div>

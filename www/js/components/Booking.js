@@ -4,8 +4,7 @@ class Booking extends Component {
         this.addRoute('/showtime', 'Showtimes');
         this.addEvents({
             click: 'chooseMe',
-            'click .selectable': 'clicked',
-            'click .movie-title': 'showMovieDetails'
+            'click .selectable': 'clicked'
         });
         this.movies = [];
 
@@ -35,14 +34,5 @@ class Booking extends Component {
         let test;
         test = $(e.currentTarget).attr('data-id');
         console.log(test);
-    }
-
-    showMovieDetails(e) {
-        let movieId;
-        movieId = $(e.currentTarget).attr('data-id');
-        console.log(movieId);
-
-        return movieId;
-        console.log(movieId);
     }
 }
