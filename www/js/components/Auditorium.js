@@ -9,7 +9,7 @@ class Auditorium extends Component {
             }
             this.seats.push(seatsInRow);
         }
-        console.log(this.seats);
+        
     }
 }
 

@@ -8,8 +8,16 @@ class Showtime extends Component {
         
     }
 
+    async BarbieGirl(){
+        this.currentAudi = Showtime.find(`.find().populate('auditorium').exec()`);
+        console.log(this.currentAudi);
+        return this.currentAudi;
+
+    }
+
     showAuditorium() {
         this.showAudi = true;
+
         this.render();
     }
 
