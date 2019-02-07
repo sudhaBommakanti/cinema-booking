@@ -8,7 +8,7 @@ class Showtime extends Component {
 
   }
 
-  async BarbieGirl() {
+  async populateShowtime() {
     this.currentAudi = await Showtime.find(`.find().populate('auditoriums').exec()`);
     console.log(this.currentAudi);
     return this.currentAudi;
