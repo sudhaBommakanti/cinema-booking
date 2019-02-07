@@ -1,0 +1,15 @@
+<div>
+    ${!this.movie || !this.movie.title ? 'Ingen film med detta id' : `
+    <h2>${this.movie.title}</h2>
+    <p>${this.movie.description}</p>
+    <p>${this.movie.productionYear}</p>
+    <p>${this.movie.length}</p>
+    <p>${this.movie.genre}</p>
+    <p>${this.movie.distributor}</p>
+    <p>${this.movie.language}</p>
+    <p>${this.movie.subtitles}</p>
+    <p>${this.movie.director}</p>
+    <p>${this.movie.description}</p>
+    <p>${this.movie.actors.join(',')}</p>
+    <p>${this.movie.productionCountries.join(',')} `}
+</div>
