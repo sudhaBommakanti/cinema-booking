@@ -7,6 +7,5 @@ class PageContent extends Component {
         this.bookingsystem = new BookingSystem();
         this.booking = new Booking();
         this.movieInfo = new MovieInfo();
-        this.test = new Test();
     }
 }
