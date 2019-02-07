@@ -19,4 +19,5 @@ class App extends Component {
     async getAllAuditoriums() {
         this.auditoriums = await Auditorium.find();
     }
+
 }

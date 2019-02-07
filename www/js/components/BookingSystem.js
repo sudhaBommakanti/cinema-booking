@@ -1,13 +1,14 @@
 class BookingSystem extends Component {
     constructor(props) {
         super(props);
-        this.addRoute('/auditoriums', 'Platser');
+        this.auditoriumsShown = false;
+        this.addRoute('/showtime', 'Platser');
         this.auditoriums = [];
         this.getAuditoriums();
     }
 
     async getAuditoriums() {
-        this.auditoriums = await Auditorium.find();
+        App.auditoriums = await Auditorium.find();
         this.render();
     }
 }
