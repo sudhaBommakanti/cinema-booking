@@ -4,10 +4,9 @@
     background-color: #761818;
     justify-content: center;
     width: 75%;
-}
 
-
-.screentext {
-    text-align: center;
+    &text {
+        text-align: center;
     color: white;
+    }
 }
