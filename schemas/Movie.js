@@ -13,8 +13,8 @@ let movieSchema = new Schema({
     director: String,
     actors: [String],
     description: String,
-    images: [String],
-    youtubeTrailers: [String],
+    image: String,
+    youtubeTrailers: String,
     reviews: [{
         source: String,
         quote: String,
