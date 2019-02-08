@@ -10,13 +10,12 @@ class Showing extends Component {
         this.showing = await Showtime.find(id);
         console.log(this.showing);
         this.getAuditorium(this.showing.auditorium);
-
     }
 
     async getAuditorium(showtimeAudiId) {
-
         this.auditorium = await Auditorium.find(showtimeAudiId);
-        console.log(this.auditorium);
-    }
+        this.render();
+        return this.auditorium;
+      }
 
 }
