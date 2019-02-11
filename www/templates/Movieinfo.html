@@ -9,7 +9,11 @@
     <p>${this.movie.language}</p>
     <p>${this.movie.subtitles}</p>
     <p>${this.movie.director}</p>
-    <p>${this.movie.description}</p>
     <p>${this.movie.actors.join(',')}</p>
-    <p>${this.movie.productionCountries.join(',')} `}
+    <p>${this.movie.productionCountries.join(',')}
+        <p>${this.movie.reviews[0].source} </p>
+        <p>${this.movie.reviews[0].quote} </p>
+        <p>${this.movie.reviews[0].stars}</p>
+        <p>${this.movie.reviews[0].max} </p>
+        <img src="${this.movie.image}" /> `}
 </div>
