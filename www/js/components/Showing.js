@@ -2,9 +2,6 @@ class Showing extends Component {
   constructor(props) {
     super(props);
     this.addRoute((/showing\/(.*)/));
-    this.countAdult = 0;
-    this.countKid = 0;
-    this.countRetired = 0;
     this.addEvents({
       'click .add-adult': 'addOne',
       'click .add-kid': 'addOne',
@@ -12,15 +9,15 @@ class Showing extends Component {
       'click .remove-adult': 'removeOne',
       'click .remove-kid': 'removeOne',
       'click .remove-retired': 'removeOne',
-      'click .seat': 'hej',
+      'click .seat': 'bookSeats',
     });
-
+    this.countAdult = 0;
+    this.countKid = 0;
+    this.countRetired = 0;
     this.id = window.location.pathname.split('/')[2];
     this.getShowing(this.id);
   }
-
-  hej() {
-    console.log();
+  bookSeats() {
   }
 
   addOne(e) {
