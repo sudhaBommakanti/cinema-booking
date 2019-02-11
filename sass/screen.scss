@@ -1,0 +1,12 @@
+.screen {
+    display: flex;
+    height: 1.5rem;
+    background-color: #761818;
+    justify-content: center;
+    width: 75%;
+
+    &text {
+        text-align: center;
+    color: white;
+    }
+}
