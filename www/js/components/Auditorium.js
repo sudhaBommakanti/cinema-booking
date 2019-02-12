@@ -20,6 +20,7 @@ class Auditorium extends Component {
       row++;
     }
   }
+
   seatClick(e) {
     console.log(e.target);
     let seat = this.seatsBySeatNumber[$(e.target).attr('data-seat')];

@@ -12,8 +12,7 @@ let bookingSchema = new Schema({
 bookingSchema.pre('save', async function () {
   if (this.bookingNum) {
     return
-  }
-  // write code here to generate a booking number
+  } 
   let characters = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789';
   let uniqueId;
   do {

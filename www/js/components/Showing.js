@@ -9,11 +9,10 @@ class Showing extends Component {
       'click .remove-adult': 'removeOne',
       'click .remove-kid': 'removeOne',
       'click .remove-retired': 'removeOne',
-      'click .seat': 'bookSeats',
-      'click .bookButton' : 'countTotalPrice',
-      'click .add-adult' : 'availableSeats',
-      'click .add-kid' : 'availableSeats',
-      'click .add-retired' : 'availableSeats',
+      'click .bookButton': 'countTotalPrice',
+      //'click .add-adult' : 'availableSeats',
+      //'click .add-kid' : 'availableSeats',
+      //'click .add-retired' : 'availableSeats',
     });
     this.countAdult = 0;
     this.countKid = 0;
@@ -23,8 +22,7 @@ class Showing extends Component {
     this.ticketPriceAdult = 85;
     this.ticketPriceKid = 65;
     this.ticketPriceSenior = 75;
-  }
-  bookSeats() {
+    this.availableSeats;
   }
 
   addOne(e) {
@@ -34,9 +32,8 @@ class Showing extends Component {
     }
     if (e.target.className.includes('add-adult')) {
       this.countAdult++;
+      this.checkAvailableSeats();
       this.render();
-     
-
     } else if (e.target.className.includes('add-kid')) {
       this.countKid++;
       this.render();
@@ -53,6 +50,7 @@ class Showing extends Component {
     }
     if (e.target.className.includes('remove-adult') && this.countAdult > 0) {
       this.countAdult--;
+      this.removeBookedSeat();
       this.render();
     } else if (e.target.className.includes('remove-kid') && this.countKid > 0) {
       this.countKid--;
@@ -63,7 +61,7 @@ class Showing extends Component {
     }
   }
 
-  countTotalPrice(){
+  countTotalPrice() {
     let fullPriceAdult = this.countAdult * this.ticketPriceAdult;
     let fullPriceChild = this.countKid * this.ticketPriceKid;
     let fullPriceOld = this.countRetired * this.ticketPriceSenior;
@@ -71,10 +69,29 @@ class Showing extends Component {
     console.log(totalPrice);
   }
 
-   availableSeats() {
-     
+  checkAvailableSeats() {
+    for (let row = 0; row < this.availableSeats.length; row++) {
+      for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
+        if (!this.availableSeats[row][seat].booked) {
+          this.availableSeats[row][seat].booked = true;
+          this.availableSeats[row][seat].render();
+          return;
+        }
+      }
+    }
+  }
 
-   }
+   removeBookedSeat() {
+    for (let row = 0; row < this.availableSeats.length; row++) {
+      for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
+        if (this.availableSeats[row][seat].booked) {
+          this.availableSeats[row][seat].booked = false;
+          this.availableSeats[row][seat].render();
+          return;
+        }
+      }
+    }
+  }
 
   async getShowing(id) {
     this.showing = await Showtime.find(id);
@@ -86,6 +103,7 @@ class Showing extends Component {
 
   async getAuditorium(showtimeAudiId) {
     this.auditorium = await Auditorium.find(showtimeAudiId);
+    this.availableSeats = this.auditorium.seats;
     this.render();
   }
 
