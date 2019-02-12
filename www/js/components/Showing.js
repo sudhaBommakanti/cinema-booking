@@ -11,6 +11,9 @@ class Showing extends Component {
       'click .remove-retired': 'removeOne',
       'click .seat': 'bookSeats',
       'click .bookButton' : 'countTotalPrice',
+      'click .add-adult' : 'availableSeats',
+      'click .add-kid' : 'availableSeats',
+      'click .add-retired' : 'availableSeats',
     });
     this.countAdult = 0;
     this.countKid = 0;
@@ -66,8 +69,12 @@ class Showing extends Component {
     let fullPriceOld = this.countRetired * this.ticketPriceSenior;
     let totalPrice = fullPriceAdult + fullPriceChild + fullPriceOld;
     console.log(totalPrice);
-
   }
+
+   availableSeats() {
+     
+
+   }
 
   async getShowing(id) {
     this.showing = await Showtime.find(id);
