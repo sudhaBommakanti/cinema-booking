@@ -10,24 +10,29 @@ class Showing extends Component {
       'click .remove-kid': 'removeOne',
       'click .remove-retired': 'removeOne',
       'click .seat': 'bookSeats',
+      'click .bookButton' : 'countTotalPrice',
     });
     this.countAdult = 0;
     this.countKid = 0;
     this.countRetired = 0;
     this.id = window.location.pathname.split('/')[2];
     this.getShowing(this.id);
+    this.ticketPriceAdult = 85;
+    this.ticketPriceKid = 65;
+    this.ticketPriceSenior = 75;
   }
   bookSeats() {
   }
 
   addOne(e) {
     if ((this.countAdult + this.countKid + this.countRetired) >= 8) {
-      alert('You can not choose more than 8 persons')
+      alert('You can not choose more than 8 tickets')
       return;
     }
     if (e.target.className.includes('add-adult')) {
       this.countAdult++;
       this.render();
+     
 
     } else if (e.target.className.includes('add-kid')) {
       this.countKid++;
@@ -40,7 +45,7 @@ class Showing extends Component {
 
   removeOne(e) {
     if ((this.countAdult + this.countKid + this.countRetired) <= 0) {
-      alert('You shoud choose one person')
+      alert('You shoud choose one ticket')
       return;
     }
     if (e.target.className.includes('remove-adult') && this.countAdult > 0) {
@@ -53,6 +58,15 @@ class Showing extends Component {
       this.countRetired--;
       this.render();
     }
+  }
+
+  countTotalPrice(){
+    let fullPriceAdult = this.countAdult * this.ticketPriceAdult;
+    let fullPriceChild = this.countKid * this.ticketPriceKid;
+    let fullPriceOld = this.countRetired * this.ticketPriceSenior;
+    let totalPrice = fullPriceAdult + fullPriceChild + fullPriceOld;
+    console.log(totalPrice);
+
   }
 
   async getShowing(id) {
