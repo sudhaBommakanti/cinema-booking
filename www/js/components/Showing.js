@@ -24,6 +24,7 @@ class Showing extends Component {
     this.ticketPriceKid = 65;
     this.ticketPriceSenior = 75;
     this.availableSeats;
+    this.chosenSeats = [];
   }
 
   async getUserId() {
@@ -80,12 +81,14 @@ class Showing extends Component {
     return totalPrice;
   }
 
+  //Loopa igenom bokningars visningar för att kolla bokade säten!!!
   checkAvailableSeats() {
     for (let row = 0; row < this.availableSeats.length; row++) {
       for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
         if (!this.availableSeats[row][seat].booked) {
           this.availableSeats[row][seat].booked = true;
           this.availableSeats[row][seat].render();
+          this.chosenSeats.push(this.availableSeats[row][seat].seatNum);
           return;
         }
       }
@@ -121,7 +124,7 @@ class Showing extends Component {
     let userId = await this.getUserId();
     const booking = new Booking({
       "showTimeDetails": this.id,
-      "seats": ['1-1'],
+      "seats": this.chosenSeats,
       "userId": userId,
       "totalPrice": this.countTotalPrice()
     });
