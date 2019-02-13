@@ -4,7 +4,6 @@ class PageContent extends Component {
         this.startPage = new StartPage();
         this.login = new Login();
         this.showtime = new Showtime();
-        this.bookingsystem = new BookingSystem();
         this.booking = new Booking();
         this.showing = new Showing();
         this.movieInfo = new MovieInfo();

@@ -1,1 +1,2 @@
-class Seat extends Component {}
+class Seat extends Component {
+}
