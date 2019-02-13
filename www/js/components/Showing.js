@@ -2,6 +2,7 @@ class Showing extends Component {
   constructor(props) {
     super(props);
     this.addRoute((/showing\/(.*)/));
+    this.modal = '';
     this.addEvents({
       'click .add-adult': 'addOne',
       'click .add-kid': 'addOne',
@@ -9,7 +10,7 @@ class Showing extends Component {
       'click .remove-adult': 'removeOne',
       'click .remove-kid': 'removeOne',
       'click .remove-retired': 'removeOne',
-      //'click .bookButton': 'countTotalPrice',
+      'click .bookButton': 'countTotalPrice',
       'click .bookButton': 'sendBooking',
       //'click .add-adult' : 'availableSeats',
       //'click .add-kid' : 'availableSeats',
@@ -77,6 +78,7 @@ class Showing extends Component {
     let fullPriceChild = this.countKid * this.ticketPriceKid;
     let fullPriceOld = this.countRetired * this.ticketPriceSenior;
     let totalPrice = fullPriceAdult + fullPriceChild + fullPriceOld;
+    console.log(totalPrice);
     return totalPrice;
   }
 
@@ -119,12 +121,28 @@ class Showing extends Component {
 
   async sendBooking() {
     let userId = await this.getUserId();
-    const booking = new Booking({
+    const booking = await new Booking({
       "showTimeDetails": this.id,
       "seats": ['1-1'],
       "userId": userId,
       "totalPrice": this.countTotalPrice()
     });
-    console.log(await booking.save());
+    let bookingInfo = await booking.save();
+    bookingInfo = await Booking.find(".findById('" + bookingInfo._id + "').populate('showTimeDetails').exec()");
+    let auditorium = await Auditorium.find(".findById('" + bookingInfo.showTimeDetails.auditorium + "').exec()");
+    console.log(bookingInfo, auditorium);
+    let modalData = {
+      bookingNum: bookingInfo.bookingNum,
+      seats: bookingInfo.seats,
+      auditorium: auditorium.name,
+      totalPrice: bookingInfo.totalPrice,
+      film: bookingInfo.showTimeDetails.film
+    }
+    console.log('modalData', modalData);
+    this.modal = new Modal(modalData);
+    console.log(this.modal)
+    this.render();
+    $(this.baseEl).find('#bookingModal').modal({show:true});
+    
   }
 }
