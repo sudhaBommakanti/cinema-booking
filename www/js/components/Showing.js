@@ -9,7 +9,8 @@ class Showing extends Component {
       'click .remove-adult': 'removeOne',
       'click .remove-kid': 'removeOne',
       'click .remove-retired': 'removeOne',
-      'click .bookButton': 'countTotalPrice',
+      //'click .bookButton': 'countTotalPrice',
+      'click .bookButton': 'sendBooking',
       //'click .add-adult' : 'availableSeats',
       //'click .add-kid' : 'availableSeats',
       //'click .add-retired' : 'availableSeats',
@@ -25,6 +26,12 @@ class Showing extends Component {
     this.availableSeats;
   }
 
+  async getUserId() {
+    let user = await Login.find();
+    console.log(user);
+    return user._id;
+  }
+
   addOne(e) {
     if ((this.countAdult + this.countKid + this.countRetired) >= 8) {
       alert('You can not choose more than 8 tickets')
@@ -36,9 +43,11 @@ class Showing extends Component {
       this.render();
     } else if (e.target.className.includes('add-kid')) {
       this.countKid++;
+      this.checkAvailableSeats();
       this.render();
     } else if (e.target.className.includes('add-retired')) {
       this.countRetired++;
+      this.checkAvailableSeats();
       this.render();
     }
   }
@@ -54,9 +63,11 @@ class Showing extends Component {
       this.render();
     } else if (e.target.className.includes('remove-kid') && this.countKid > 0) {
       this.countKid--;
+      this.removeBookedSeat();
       this.render();
     } else if (e.target.className.includes('remove-retired') && this.countRetired > 0) {
       this.countRetired--;
+      this.removeBookedSeat();
       this.render();
     }
   }
@@ -66,7 +77,7 @@ class Showing extends Component {
     let fullPriceChild = this.countKid * this.ticketPriceKid;
     let fullPriceOld = this.countRetired * this.ticketPriceSenior;
     let totalPrice = fullPriceAdult + fullPriceChild + fullPriceOld;
-    console.log(totalPrice);
+    return totalPrice;
   }
 
   checkAvailableSeats() {
@@ -81,7 +92,7 @@ class Showing extends Component {
     }
   }
 
-   removeBookedSeat() {
+  removeBookedSeat() {
     for (let row = 0; row < this.availableSeats.length; row++) {
       for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
         if (this.availableSeats[row][seat].booked) {
@@ -96,7 +107,6 @@ class Showing extends Component {
   async getShowing(id) {
     this.showing = await Showtime.find(id);
     this.render();
-    console.log(this.showing);
     this.getAuditorium(this.showing.auditorium);
 
   }
@@ -107,4 +117,14 @@ class Showing extends Component {
     this.render();
   }
 
+  async sendBooking() {
+    let userId = await this.getUserId();
+    const booking = new Booking({
+      "showTimeDetails": this.id,
+      "seats": ['1-1'],
+      "userId": userId,
+      "totalPrice": this.countTotalPrice()
+    });
+    console.log(await booking.save());
+  }
 }

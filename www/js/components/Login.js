@@ -33,13 +33,12 @@ class Login extends Component {
       password: $('.password').val()
     });
     let result = await login.save();
+    console.log(result)
     if (result.error) {
       // replace with something smoother
       alert(result.error);
     }
     App.app.checkIfLoggedIn();
-    //$('.email').val('')
-    //$('.password').val('')
     this.loggedIn = true;
     this.render();
   }
