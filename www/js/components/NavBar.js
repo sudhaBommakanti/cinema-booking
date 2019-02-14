@@ -19,7 +19,7 @@ class NavBar extends Component {
         trigger: 'focus'
       })
     }
-   }
+   
     get navItems() {
         console.log('rerender nav');
         let navItems = [
