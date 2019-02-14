@@ -83,6 +83,7 @@ class Showing extends Component {
                     return;
                 }
             }
+  //Loopa igenom bokningars visningar för att kolla bokade säten!!!
         }
     }
 
