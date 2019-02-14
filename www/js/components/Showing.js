@@ -124,6 +124,7 @@ class Showing extends Component {
     const booking = await new Booking({
       "showTimeDetails": this.id,
       "userId": userId,
+      "seats": this.chosenSeats,
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
@@ -144,5 +145,5 @@ class Showing extends Component {
     $(this.baseEl).find('#bookingModal').modal({show:true});
     
   }
-            seats: this.chosenSeats,
+          
 }
