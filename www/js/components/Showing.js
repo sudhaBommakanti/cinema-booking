@@ -1,6 +1,7 @@
 class Showing extends Component {
     constructor(props) {
         super(props);
+        this.modal = '';
         this.addRoute(/showing\/(.*)/);
         this.addEvents({
             'click .add-one': 'addOne',
