@@ -5,7 +5,8 @@ class Showing extends Component {
         this.addEvents({
             'click .add-one': 'addOne',
             'click .remove-one': 'removeOne',
-            'click .bookButton': 'sendBooking'
+            'click .bookButton': 'sendBooking',
+            'click .individual': 'chooseIndividualSeats'
         });
         this.countAdult = 0;
         this.countKid = 0;
@@ -17,7 +18,12 @@ class Showing extends Component {
         this.ticketPriceSenior = 75;
         this.bookButton = false;
         this.availableSeats;
+        this.auditorium;
         this.chosenSeats = [];
+    }
+
+    chooseIndividualSeats() {
+        this.auditorium.chooseIndividualSeats();
     }
 
     async getUserId() {
