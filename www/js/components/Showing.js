@@ -1,6 +1,7 @@
 class Showing extends Component {
     constructor(props) {
         super(props);
+        this.modal = '';
         this.addRoute(/showing\/(.*)/);
         this.addEvents({
             'click .add-one': 'addOne',
@@ -119,14 +120,31 @@ class Showing extends Component {
         this.render();
     }
 
-    async sendBooking() {
-        let userId = await this.getUserId();
-        const booking = new Booking({
-            showTimeDetails: this.id,
-            seats: this.chosenSeats,
-            userId: userId,
-            totalPrice: this.countTotalPrice()
-        });
-        console.log(await booking.save());
+  async sendBooking() {
+    let userId = await this.getUserId();
+    const booking = await new Booking({
+      "showTimeDetails": this.id,
+      "userId": userId,
+      "seats": this.chosenSeats,
+      "totalPrice": this.countTotalPrice()
+    });
+    let bookingInfo = await booking.save();
+    bookingInfo = await Booking.find(".findById('" + bookingInfo._id + "').populate('showTimeDetails').exec()");
+    let auditorium = await Auditorium.find(".findById('" + bookingInfo.showTimeDetails.auditorium + "').exec()");
+    console.log(bookingInfo, auditorium);
+    let modalData = {
+      bookingNum: bookingInfo.bookingNum,
+      seats: bookingInfo.seats,
+      auditorium: auditorium.name,
+      totalPrice: bookingInfo.totalPrice,
+      film: bookingInfo.showTimeDetails.film
     }
+    console.log('modalData', modalData);
+    this.modal = new Modal(modalData);
+    console.log(this.modal)
+    this.render();
+    $(this.baseEl).find('#bookingModal').modal({show:true});
+    
+  }
+          
 }

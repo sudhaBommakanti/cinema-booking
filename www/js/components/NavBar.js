@@ -1,10 +1,10 @@
 class NavBar extends Component {
     constructor() {
-        super();
-        this.addEvents({
-            'click .loggedin': 'logout'
-        });
-        console.log('hej');
+      super();
+      this.addEvents({
+        'click .loggedin': 'logout',
+        'click .popsi' : 'accountInformation',
+      });
     }
 
     async logout() {
@@ -13,7 +13,13 @@ class NavBar extends Component {
         await logout.delete();
         App.app.checkIfLoggedIn();
     }
-
+  
+    accountInformation (){
+      $('.popsi').popover({
+        trigger: 'focus'
+      })
+    }
+   }
     get navItems() {
         console.log('rerender nav');
         let navItems = [

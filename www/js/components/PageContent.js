@@ -7,5 +7,6 @@ class PageContent extends Component {
         this.booking = new Booking();
         this.showing = new Showing();
         this.movieInfo = new MovieInfo();
+        this.modal = new Modal();
     }
 }
