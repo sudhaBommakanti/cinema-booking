@@ -8,7 +8,7 @@
         <ul class="navbar-nav mr-auto">
             ${this.navItems}
         </ul>
-        ${App.loggedInUserEmail === undefined ? '' : `<div>Logged in as ${App.loggedInUserEmail}<i class="fas fa-user"></i><p class="loggedin">Logout</p></div>`
+        ${App.loggedInUserEmail === undefined ? 'Inte inloggad<i class="fas fa-info-circle popsi" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="Du är inte inloggad just nu, du kan fortfarande göra en bokning men du kommer endast kunna se din bokningshistorik om du har ett konto på vår sida."></i>' : `<div>Inloggad som ${App.loggedInUserEmail}<i class="fas fa-user"></i><p class="loggedin">Logga ut</p></div>`
         }
     </div>
 </nav>

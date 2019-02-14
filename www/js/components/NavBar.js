@@ -8,7 +8,8 @@ class NavBar extends Component {
         new NavItem('Platser', '/auditoriums')
       ];
       this.addEvents({
-        'click .loggedin': 'logout'
+        'click .loggedin': 'logout',
+        'click .popsi' : 'accountInformation',
       });
     }
    
@@ -17,5 +18,11 @@ class NavBar extends Component {
       let logout = new Login();
       await logout.delete();
       App.app.checkIfLoggedIn();
+    }
+
+    accountInformation (){
+      $('.popsi').popover({
+        trigger: 'focus'
+      })
     }
    }
