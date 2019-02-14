@@ -4,30 +4,32 @@
         <h2 class="col-12">Välj antal biljetter</h2>
         <div class="col-4">
             <h4>Vuxna (85kr)</h4>
-            <button type="button" class="btn btn remove-adult">-</button>
+            <button type="button" class="btn btn remove-adult remove-one">-</button>
             <span class="adult">${this.countAdult}</span>
-            <button type="button" class="btn btn add-adult">+</button>
+            <button type="button" class="btn btn add-adult add-one">+</button>
         </div>
         <div class="col-4">
             <h4>Barn (65kr)</h4>
-            <button type="button" class="btn btn remove-kid">-</button>
+            <button type="button" class="btn btn remove-kid remove-one">-</button>
             <span class="kid">${this.countKid}</span>
-            <button type="button" class="btn btn add-kid">+</button>
+            <button type="button" class="btn btn add-kid add-one">+</button>
         </div>
         <div class="col-4">
             <h4>Pensionär (75kr)</h4>
-            <button type="button" class="btn btn remove-retired">-</button>
+            <button type="button" class="btn btn remove-retired remove-one">-</button>
             <span class="retired">${this.countRetired}</span>
-            <button type="button" class="btn btn add-retired">+</button>
+            <button type="button" class="btn btn add-retired add-one">+</button>
         </div>
     </div>
     <div class="row mt-4">
-            <div class="col-md-3 col-sm-4"></div>
-            <div class="col-md-6 col-sm-4 screen">
-                <div class="row screentext"><p>Bioduk</p></div>
+        <div class="col-md-3 col-sm-4"></div>
+        <div class="col-md-6 col-sm-4 screen">
+            <div class="row screentext">
+                <p>Bioduk</p>
             </div>
-            <div class="col-md-3 col-sm-4"></div>
-            <div class="auditorium">${this.auditorium}</div>
-            <button class="bookButton">Slutför bokning</button>
         </div>
+        <div class="col-md-3 col-sm-4"></div>
+        <div class="auditorium">${this.auditorium}</div>
+        <button class="bookButton" ${this.bookButton ? '' : 'disabled="disabled"'}>Slutför bokning</button>
+    </div>
 </div>
