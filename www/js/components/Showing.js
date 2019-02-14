@@ -17,6 +17,7 @@ class Showing extends Component {
         this.ticketPriceSenior = 75;
         this.bookButton = false;
         this.availableSeats;
+        this.chosenSeats = [];
     }
 
     async getUserId() {
@@ -80,6 +81,7 @@ class Showing extends Component {
                 if (!this.availableSeats[row][seat].booked) {
                     this.availableSeats[row][seat].booked = true;
                     this.availableSeats[row][seat].render();
+                    this.chosenSeats.push(this.availableSeats[row][seat].seatNum);
                     return;
                 }
             }
@@ -121,7 +123,7 @@ class Showing extends Component {
         let userId = await this.getUserId();
         const booking = new Booking({
             showTimeDetails: this.id,
-            seats: ['1-1'],
+            seats: this.chosenSeats,
             userId: userId,
             totalPrice: this.countTotalPrice()
         });

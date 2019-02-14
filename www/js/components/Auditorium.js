@@ -6,7 +6,6 @@ class Auditorium extends Component {
     });
     this.seats = [];
     this.seatsBySeatNumber = {};
-    this.chosenSeats = [];
     let row = 1;
     let seatNum = 1;
     for (let numberOfSeatsInTheRow of this.seatsPerRow) {
@@ -26,8 +25,6 @@ class Auditorium extends Component {
     console.log(e.target);
     let seat = this.seatsBySeatNumber[$(e.target).attr('data-seat')];
     seat.booked = seat.booked ? false : true;
-    this.chosenSeats.push(e.target.dataset.seat)
-    console.log(this.chosenSeats);
     seat.render();
   }
 }
