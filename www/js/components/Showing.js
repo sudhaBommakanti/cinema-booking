@@ -19,6 +19,7 @@ class Showing extends Component {
     this.bookButton = false;
     this.availableSeats;
     this.chosenSeats = [];
+    this.takenSeats = [];
   }
 
   async getUserId() {
@@ -110,6 +111,30 @@ class Showing extends Component {
 
   async getAuditorium(showtimeAudiId) {
     this.auditorium = await Auditorium.find(showtimeAudiId);
+    // console.log(this.auditorium)
+
+    // Ta tag i alla bokningar
+    let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);
+
+    // Loopa upptagna säten och lagra dessa för att sedan kunna markera vilka som är upptagna
+    for (const booking of allBookings) {
+      let seats = booking.seats;
+
+      for (const seatNum of seats) {
+        this.takenSeats.push(seatNum);
+      }
+    }
+
+    for (const seatRow of this.auditorium.seats) {
+      for (const seat of seatRow) {
+        if (this.takenSeats.indexOf(seat.seatNum + "") == -1) {
+          continue;
+        } else {
+          seat.booked = true;
+        }
+      }
+    }
+
     this.availableSeats = this.auditorium.seats;
     this.render();
   }
