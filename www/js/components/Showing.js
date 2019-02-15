@@ -111,7 +111,6 @@ class Showing extends Component {
 
   async getAuditorium(showtimeAudiId) {
     this.auditorium = await Auditorium.find(showtimeAudiId);
-    // console.log(this.auditorium)
 
     // Ta tag i alla bokningar
     let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);
@@ -121,13 +120,13 @@ class Showing extends Component {
       let seats = booking.seats;
 
       for (const seatNum of seats) {
-        this.takenSeats.push(seatNum);
+        this.takenSeats.push(Number(seatNum));
       }
     }
 
     for (const seatRow of this.auditorium.seats) {
       for (const seat of seatRow) {
-        if (this.takenSeats.indexOf(seat.seatNum + "") == -1) {
+        if (this.takenSeats.indexOf(seat.seatNum) == -1) {
           continue;
         } else {
           seat.booked = true;
