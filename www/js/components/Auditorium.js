@@ -6,8 +6,10 @@ class Auditorium extends Component {
     });
     this.seats = [];
     this.seatsBySeatNumber = {};
+    let rowIndex = 0;
     let row = 1;
     let seatNum = 1;
+
     for (let numberOfSeatsInTheRow of this.seatsPerRow) {
       let seatsInRow = [];
       while (seatsInRow.length < numberOfSeatsInTheRow) {
@@ -17,6 +19,9 @@ class Auditorium extends Component {
         seatNum++;
       }
       this.seats.push(seatsInRow);
+      //Sort the seat numbers in a row from high to low
+      this.seats[rowIndex].sort((a, b) => b.seatNum - a.seatNum);
+      rowIndex++;
       row++;
     }
   }
