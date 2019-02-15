@@ -76,6 +76,7 @@ class Showing extends Component {
         return totalPrice;
     }
 
+    //Loopa igenom bokningars visningar för att kolla bokade säten!!!
     checkAvailableSeats() {
         for (let row = 0; row < this.availableSeats.length; row++) {
             for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
@@ -86,7 +87,6 @@ class Showing extends Component {
                     return;
                 }
             }
-  //Loopa igenom bokningars visningar för att kolla bokade säten!!!
         }
     }
 
