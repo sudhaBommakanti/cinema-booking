@@ -21,7 +21,6 @@ class Auditorium extends Component {
       this.seats.push(seatsInRow);
       //Sort the seat numbers in a row from high to low
       this.seats[rowIndex].sort((a, b) => b.seatNum - a.seatNum);
-      console.log('this.seats[rowIndex]', this.seats[rowIndex]);
       rowIndex++;
       row++;
     }
