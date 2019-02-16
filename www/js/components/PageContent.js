@@ -3,11 +3,9 @@ class PageContent extends Component {
         super();
         this.startPage = new StartPage();
         this.login = new Login();
-        this.footer = new Footer();
         this.showtime = new Showtime();
         this.booking = new Booking();
         this.showing = new Showing();
-        
         this.movieInfo = new MovieInfo();
         this.modal = new Modal();
     }
