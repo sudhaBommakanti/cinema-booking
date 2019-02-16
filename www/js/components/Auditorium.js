@@ -6,9 +6,10 @@ class Auditorium extends Component {
     });
     this.seats = [];
     this.seatsBySeatNumber = {};
-    this.chosenSeats = [];
+    let rowIndex = 0;
     let row = 1;
     let seatNum = 1;
+
     for (let numberOfSeatsInTheRow of this.seatsPerRow) {
       let seatsInRow = [];
       while (seatsInRow.length < numberOfSeatsInTheRow) {
@@ -18,6 +19,9 @@ class Auditorium extends Component {
         seatNum++;
       }
       this.seats.push(seatsInRow);
+      //Sort the seat numbers in a row from high to low
+      this.seats[rowIndex].sort((a, b) => b.seatNum - a.seatNum);
+      rowIndex++;
       row++;
     }
   }
@@ -26,8 +30,6 @@ class Auditorium extends Component {
     console.log(e.target);
     let seat = this.seatsBySeatNumber[$(e.target).attr('data-seat')];
     seat.booked = seat.booked ? false : true;
-    this.chosenSeats.push(e.target.dataset.seat)
-    console.log(this.chosenSeats);
     seat.render();
   }
 }

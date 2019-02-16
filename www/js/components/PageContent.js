@@ -9,5 +9,6 @@ class PageContent extends Component {
         this.showing = new Showing();
         
         this.movieInfo = new MovieInfo();
+        this.modal = new Modal();
     }
 }

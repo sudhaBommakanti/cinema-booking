@@ -1,0 +1,21 @@
+.modal {
+  position: fixed;
+  top: 142px;
+  right: 0;
+  bottom: 0;
+  left: 0; 
+
+    &-body {
+      text-align: center;
+    }
+
+    &-header {
+      text-align: center;
+      justify-content: center;
+    }
+
+    &-footer {
+      text-align: center;
+      justify-content: center;
+    }
+}
