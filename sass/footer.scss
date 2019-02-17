@@ -1,12 +1,16 @@
-.sudha-footer {
+.footer {
   background-color: #761818;
   color: white;
+  vertical-align: middle;
+  line-height: 40px;
 }
-
+  
 body > div {
+
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  
 }
 
 main {
