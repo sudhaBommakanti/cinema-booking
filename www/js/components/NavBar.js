@@ -28,7 +28,6 @@ class NavBar extends Component {
             /* */ new NavItem('Mina bokningar', '/mybookings') :
             /* */ new NavItem('Logga In', '/login'),
             new NavItem('Boka biljetter', '/showtime'),
-            new NavItem('Platser', '/auditoriums')
         ];
         return navItems;
     }
