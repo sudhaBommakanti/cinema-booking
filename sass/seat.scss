@@ -15,6 +15,8 @@
         background: linear-gradient(to top, #F3686A, #F3686A, #F3686A, #F3686A, #F3686A, #ffb6c1,  #ffc0cb);
       }
 
-    
+    &.alreadyBooked {
+      background: black;
+    }
     
 }

@@ -1,4 +1,5 @@
 class Showing extends Component {
+
   constructor(props) {
     super(props);
     this.modal = '';
@@ -63,32 +64,34 @@ class Showing extends Component {
     } else if (e.target.className.includes('add-retired')) {
       this.countRetired++;
     }
-    if (this.countAdult + this.countKid + this.countRetired) {
+    if (this.countAll > 0) {
       this.bookButton = true;
     }
-    this.checkAvailableSeats();
+    
     this.render();
   }
 
   removeOne(e) {
-    if (this.countAdult + this.countKid + this.countRetired <= 0) {
+    if (this.countAll <= 0) {
       alert('You shoud choose one ticket');
       return;
     }
     if (e.target.className.includes('remove-adult') && this.countAdult > 0) {
       this.countAdult--;
+      this.removeBookedSeat();
     } else if (e.target.className.includes('remove-kid') && this.countKid > 0) {
       this.countKid--;
+      this.removeBookedSeat();
     } else if (
       e.target.className.includes('remove-retired') &&
       this.countRetired > 0
     ) {
       this.countRetired--;
+      this.removeBookedSeat();
     }
-    if (this.countAdult + this.countKid + this.countRetired === 0) {
+    if (this.countAll === 0) {
       this.bookButton = false;
     }
-    this.removeBookedSeat();
     this.render();
   }
 
@@ -100,25 +103,12 @@ class Showing extends Component {
     return totalPrice;
   }
 
-  //Loopa igenom bokningars visningar för att kolla bokade säten!!!
-  checkAvailableSeats() {
-    for (let row = 0; row < this.availableSeats.length; row++) {
-      for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
-        if (!this.availableSeats[row][seat].booked) {
-          this.availableSeats[row][seat].booked = true;
-          this.availableSeats[row][seat].render();
-          this.chosenSeats.push(this.availableSeats[row][seat].seatNum);
-          return;
-        }
-      }
-    }
-  }
 
   removeBookedSeat() {
     for (let row = 0; row < this.availableSeats.length; row++) {
       for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
-        if (this.availableSeats[row][seat].booked) {
-          this.availableSeats[row][seat].booked = false;
+        if (this.availableSeats[row][seat].toBeBooked) {
+          this.availableSeats[row][seat].toBeBooked = false;
           this.availableSeats[row][seat].render();
           this.chosenSeats.pop();
           return;
@@ -163,7 +153,7 @@ class Showing extends Component {
 
     this.availableSeats = this.auditorium.seats;
     // add a method to the auditorium so that i knows "countAll"
-    this.auditorium.howManySeats = () => this.countAll;
+    this.auditorium.currentShowing = this;
     this.render();
   }
 
@@ -224,5 +214,20 @@ class Showing extends Component {
     console.log(this.modal)
     this.render();
     $(this.baseEl).find('#bookingModal').modal({ show: true });
+
   }
+
+  async changeSeats(seat) {
+    if(this.chosenSeats > 0 ){
+        this.chosenSeats = [];
+        console.log(this.changeSeats);
+    } 
+    
+    this.chosenSeats.push(seat.seatNum);
+    console.log(this.chosenSeats)
+        
+
+      } 
+
+  
 }

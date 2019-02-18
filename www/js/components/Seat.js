@@ -4,5 +4,6 @@ class Seat extends Component {
     this.row = props.row;
     this.seatNum = props.seatNum
     this.booked = false;
+    this.toBeBooked = false;
   }
 }
