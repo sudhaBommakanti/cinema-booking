@@ -1,14 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">My App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg navbar-light bg-light nav-design">
+    <a class="navbar-brand" href="/"><i class="fas fa-video video-icon"></i></a>
+    <button class="navbar-toggler navbar-border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse navbar-items" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
             ${this.navItems}
         </ul>
-        ${App.loggedInUserEmail === undefined ? 'Inte inloggad<i class="fas fa-info-circle popsi" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="Du är inte inloggad just nu, du kan fortfarande göra en bokning men du kommer endast kunna se din bokningshistorik om du har ett konto på vår sida."></i>' : `<div>Inloggad som ${App.loggedInUserEmail}<i class="fas fa-user"></i><p class="loggedin">Logga ut</p></div>`
+        ${App.loggedInUserEmail === undefined ? '<div class="dropdown loggedInDiv">Inte inloggad</button><i class="fas fa-info-circle popsi" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-content="Du är inte inloggad just nu, du kan fortfarande göra en bokning men du kommer endast kunna se din bokningshistorik om du har ett konto på vår sida."></i></div>' : `<div class="dropdown loggedInDiv"><button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${App.loggedInUserEmail}<i class="fas fa-user userX"></i></button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><p class="loggedin">Logga ut <i class="far fa-times-circle"></i></p></div></div>`
         }
     </div>
 </nav>
+
+

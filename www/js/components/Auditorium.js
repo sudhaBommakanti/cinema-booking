@@ -27,9 +27,12 @@ class Auditorium extends Component {
   }
 
   seatClick(e) {
-    console.log(e.target);
-    let seat = this.seatsBySeatNumber[$(e.target).attr('data-seat')];
-    seat.booked = seat.booked ? false : true;
-    seat.render();
+    let seats = $('.seat');
+    let myIndex = seats.index(e.currentTarget);
+    for(let i = myIndex; i < myIndex + this.howManySeats(); i++){
+      let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
+      seat.booked = seat.booked ? false : true;
+      seat.render();
+    }
   }
 }

@@ -6,7 +6,9 @@ class Showing extends Component {
     this.addEvents({
       'click .add-one': 'addOne',
       'click .remove-one': 'removeOne',
-      'click .bookButton': 'sendBooking'
+      'click .bookButton': 'sendBooking',
+      'mouseenter .seat': 'mouseEnterSeat',
+      'mouseleave .seat': 'mouseLeaveSeat',
     });
     this.countAdult = 0;
     this.countKid = 0;
@@ -20,6 +22,24 @@ class Showing extends Component {
     this.availableSeats;
     this.chosenSeats = [];
     this.takenSeats = [];
+  }
+
+  get countAll(){
+    return this.countAdult + this.countKid + this.countRetired;
+  }
+
+  mouseEnterSeat(e, leave = false){
+    if(this.countAll === 0){ return; }
+    let me = $(e.currentTarget);
+    let seats = $('.seat');
+    let myIndex = seats.index(me);
+    for(let i = myIndex; i < myIndex + this.countAll; i++){
+      seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
+    }
+  }
+
+  mouseLeaveSeat(e){
+    this.mouseEnterSeat(e, true);
   }
 
   async getUserId() {
@@ -97,6 +117,7 @@ class Showing extends Component {
         if (this.availableSeats[row][seat].booked) {
           this.availableSeats[row][seat].booked = false;
           this.availableSeats[row][seat].render();
+          this.chosenSeats.pop();
           return;
         }
       }
@@ -135,6 +156,8 @@ class Showing extends Component {
     }
 
     this.availableSeats = this.auditorium.seats;
+    // add a method to the auditorium so that i knows "countAll"
+    this.auditorium.howManySeats = () => this.countAll;
     this.render();
   }
 
