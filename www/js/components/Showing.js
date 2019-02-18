@@ -21,6 +21,7 @@ class Showing extends Component {
     this.bookButton = false;
     this.availableSeats;
     this.chosenSeats = [];
+    this.takenSeats = [];
   }
 
   get countAll(){
@@ -131,6 +132,29 @@ class Showing extends Component {
 
   async getAuditorium(showtimeAudiId) {
     this.auditorium = await Auditorium.find(showtimeAudiId);
+
+    // Ta tag i alla bokningar
+    let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);
+
+    // Loopa upptagna säten och lagra dessa för att sedan kunna markera vilka som är upptagna
+    for (const booking of allBookings) {
+      let seats = booking.seats;
+
+      for (const seatNum of seats) {
+        this.takenSeats.push(Number(seatNum));
+      }
+    }
+
+    for (const seatRow of this.auditorium.seats) {
+      for (const seat of seatRow) {
+        if (this.takenSeats.indexOf(seat.seatNum) == -1) {
+          continue;
+        } else {
+          seat.booked = true;
+        }
+      }
+    }
+
     this.availableSeats = this.auditorium.seats;
     // add a method to the auditorium so that i knows "countAll"
     this.auditorium.howManySeats = () => this.countAll;
@@ -141,53 +165,58 @@ class Showing extends Component {
     //Gör en find på alla bokningar för denna visning.
     let bookedSeats = [];
     let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);
-    //Hämta alla bokningars säten och spara i en array
-    allBookings.map(seats => bookedSeats.push(seats.seats));
-    bookedSeats = bookedSeats.flat();
-    console.log('bookedSeats', bookedSeats);
-    //Loopa alla bokade säten från bokingarna och jämför med valda säten för en bokning
-    for (let bookedSeat of bookedSeats) {
 
-      for (let chosenSeat of this.chosenSeats) {
-        //OM sätet redan är bokat skicka tillbaka 'tyvärr sätena är redan bokade'
-        if (bookedSeat == chosenSeat) {
-          console.log('HEEEEEEEEJ');
-          alert(`Alert Alert! The seat ${chosenSeat} is already booked. Please choose another seat`);
-          return;
-          //Välj nya säten
-        }
-        else {
-          let userId = await this.getUserId();
-          const booking = await new Booking({
-            "showTimeDetails": this.id,
-            "userId": userId,
-            "seats": this.chosenSeats,
-            "totalPrice": this.countTotalPrice()
-          });
-          let bookingInfo = await booking.save();
-          bookingInfo = await Booking.find(".findById('" + bookingInfo._id + "').populate('showTimeDetails').exec()");
-          let auditorium = await Auditorium.find(".findById('" + bookingInfo.showTimeDetails.auditorium + "').exec()");
-          console.log(bookingInfo, auditorium);
-          let modalData = {
-            bookingNum: bookingInfo.bookingNum,
-            seats: bookingInfo.seats,
-            auditorium: auditorium.name,
-            totalPrice: bookingInfo.totalPrice,
-            film: bookingInfo.showTimeDetails.film
+    if (allBookings.length === 0) {
+      // Gör bokning
+      this.createBooking();
+    } else {
+      //Hämta alla bokningars säten och spara i en array
+      allBookings.map(seats => bookedSeats.push(seats.seats));
+      bookedSeats = bookedSeats.flat();
+      console.log('bookedSeats', bookedSeats);
+      //Loopa alla bokade säten från bokingarna och jämför med valda säten för en bokning
+      for (let bookedSeat of bookedSeats) {
+
+        for (let chosenSeat of this.chosenSeats) {
+          //OM sätet redan är bokat skicka tillbaka 'tyvärr sätena är redan bokade'
+          if (bookedSeat == chosenSeat) {
+            console.log('HEEEEEEEEJ');
+            alert(`Alert Alert! The seat ${chosenSeat} is already booked. Please choose another seat`);
+            return;
+            //Välj nya säten
           }
-          console.log('modalData', modalData);
-          this.modal = new Modal(modalData);
-          console.log(this.modal)
-          this.render();
-          $(this.baseEl).find('#bookingModal').modal({ show: true });
-
+          else {
+            this.createBooking();
+            return;
+          }
         }
-
       }
-
     }
-
-
   }
 
+  async createBooking() {
+    let userId = await this.getUserId();
+    const booking = await new Booking({
+      "showTimeDetails": this.id,
+      "userId": userId,
+      "seats": this.chosenSeats,
+      "totalPrice": this.countTotalPrice()
+    });
+    let bookingInfo = await booking.save();
+    bookingInfo = await Booking.find(".findById('" + bookingInfo._id + "').populate('showTimeDetails').exec()");
+    let auditorium = await Auditorium.find(".findById('" + bookingInfo.showTimeDetails.auditorium + "').exec()");
+    console.log(bookingInfo, auditorium);
+    let modalData = {
+      bookingNum: bookingInfo.bookingNum,
+      seats: bookingInfo.seats,
+      auditorium: auditorium.name,
+      totalPrice: bookingInfo.totalPrice,
+      film: bookingInfo.showTimeDetails.film
+    }
+    console.log('modalData', modalData);
+    this.modal = new Modal(modalData);
+    console.log(this.modal)
+    this.render();
+    $(this.baseEl).find('#bookingModal').modal({ show: true });
+  }
 }
