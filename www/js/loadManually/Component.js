@@ -62,7 +62,7 @@ class Component extends REST {
         // renders for each item
         Array.prototype.render =
             Array.prototype.render ||
-            function() {
+            function () {
                 let html = '';
                 for (let item of this) {
                     html += item.render();
@@ -98,13 +98,10 @@ class Component extends REST {
         Router.registerRoute(route);
     }
 
-    getRouteParts() {
-        let m = location.pathname.match(this.route);
-        if (!m) {
-            return m;
-        }
-        return m.slice(1);
+    get routeParts() {
+        return Router.parts;
     }
+
 
     get baseEl() {
         return $(`[data-instance-id=${this.__componentId}]`);

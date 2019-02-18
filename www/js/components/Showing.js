@@ -13,8 +13,6 @@ class Showing extends Component {
     this.countAdult = 0;
     this.countKid = 0;
     this.countRetired = 0;
-    this.id = window.location.pathname.split('/')[2];
-    this.getShowing(this.id);
     this.ticketPriceAdult = 85;
     this.ticketPriceKid = 65;
     this.ticketPriceSenior = 75;
@@ -22,6 +20,11 @@ class Showing extends Component {
     this.availableSeats;
     this.chosenSeats = [];
     this.takenSeats = [];
+  }
+
+  mount(){
+    this.id = this.routeParts[0];
+    this.getShowing(this.id);
   }
 
   get countAll(){
@@ -135,7 +138,10 @@ class Showing extends Component {
 
     // Ta tag i alla bokningar
     let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);
-
+    console.log(this)
+    console.log(this._id)
+    console.log(this.id);
+    console.log(allBookings);
     // Loopa upptagna säten och lagra dessa för att sedan kunna markera vilka som är upptagna
     for (const booking of allBookings) {
       let seats = booking.seats;
