@@ -96,6 +96,7 @@ class Showing extends Component {
         if (this.availableSeats[row][seat].booked) {
           this.availableSeats[row][seat].booked = false;
           this.availableSeats[row][seat].render();
+          this.chosenSeats.pop();
           return;
         }
       }
