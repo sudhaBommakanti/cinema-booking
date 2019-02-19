@@ -9,6 +9,7 @@ class Auditorium extends Component {
     let rowIndex = 0;
     let row = 1;
     let seatNum = 1;
+    this.selectedSeats = [];
 
     for (let numberOfSeatsInTheRow of this.seatsPerRow) {
       let seatsInRow = [];
@@ -27,9 +28,21 @@ class Auditorium extends Component {
   }
 
   seatClick(e) {
-    console.log(e.target);
-    let seat = this.seatsBySeatNumber[$(e.target).attr('data-seat')];
-    seat.booked = seat.booked ? false : true;
-    seat.render();
+    if (e.currentTarget.classList.contains('alreadyBooked')) {
+      return;
+    }
+    while (this.currentShowing.chosenSeats.length) {
+      let seat = this.currentShowing.chosenSeats.pop();
+      seat.toBeBooked = false;
+      seat.render();
+    }
+    let seats = $('.seat');
+    let myIndex = seats.index(e.currentTarget);
+    for (let i = myIndex; i < myIndex + this.currentShowing.countAll; i++) {
+      let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
+      seat.toBeBooked = seat.toBeBooked ? false : true;
+      this.currentShowing.chosenSeats.push(seat);
+      seat.render();
+    }
   }
 }
