@@ -2,6 +2,7 @@ class App extends Component {
     constructor() {
         super();
         this.navBar = new NavBar();
+        this.footer = new Footer();
         this.pageContent = new PageContent();
         App.app = this; // make this globally reacheable through App.app
         this.checkIfLoggedIn();
