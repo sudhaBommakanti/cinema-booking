@@ -10,11 +10,15 @@ class Auditorium extends Component {
     let row = 1;
     let seatNum = 1;
     this.selectedSeats = [];
+    this.individual = false;
 
     for (let numberOfSeatsInTheRow of this.seatsPerRow) {
       let seatsInRow = [];
       while (seatsInRow.length < numberOfSeatsInTheRow) {
-        let seat = new Seat({ row, seatNum });
+        let seat = new Seat({
+          row,
+          seatNum
+        });
         seatsInRow.push(seat);
         this.seatsBySeatNumber[seatNum] = seat;
         seatNum++;
@@ -38,11 +42,23 @@ class Auditorium extends Component {
     }
     let seats = $('.seat');
     let myIndex = seats.index(e.currentTarget);
-    for (let i = myIndex; i < myIndex + this.currentShowing.countAll; i++) {
-      let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
+    if (this.individual && this.currentShowing.chosenSeats.length < this.currentShowing.countAll) {
+      let seat = this.seatsBySeatNumber[$(e.currentTarget).attr('data-seat')];
       seat.toBeBooked = seat.toBeBooked ? false : true;
       this.currentShowing.chosenSeats.push(seat);
+      console.log(this.currentShowing.chosenSeats);
+      
       seat.render();
+    } 
+    else if (this.individual === false) {
+      for (let i = myIndex; i < myIndex + this.currentShowing.countAll; i++) {
+        let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
+        seat.toBeBooked = seat.toBeBooked ? false : true;
+        this.currentShowing.chosenSeats.push(seat);
+        seat.render();
+      }
     }
   }
 }
+
+

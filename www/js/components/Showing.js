@@ -10,6 +10,7 @@ class Showing extends Component {
       'click .bookButton': 'sendBooking',
       'mouseenter .seat': 'mouseEnterSeat',
       'mouseleave .seat': 'mouseLeaveSeat',
+      'click .individualSeats': 'individualTrueOrFalse'
     });
     this.countAdult = 0;
     this.countKid = 0;
@@ -31,6 +32,12 @@ class Showing extends Component {
   get countAll() {
     return this.countAdult + this.countKid + this.countRetired;
   }
+ 
+individualTrueOrFalse(){
+  console.log('hej');
+  
+  this.auditorium.individual = !this.auditorium.individual ? true : false; 
+}
 
   mouseEnterSeat(e, leave = false) {
     if (this.countAll === 0) { return; }
