@@ -67,7 +67,7 @@ class Showing extends Component {
     if (this.countAll > 0) {
       this.bookButton = true;
     }
-
+    this.selectBestSeats()
     this.render();
   }
 
@@ -213,6 +213,13 @@ class Showing extends Component {
     console.log(this.modal)
     this.render();
     $(this.baseEl).find('#bookingModal').modal({ show: true });
+
+  }
+
+  async selectBestSeats(){
+    
+    this.auditorium.bestSeats;
+  
 
   }
 }
