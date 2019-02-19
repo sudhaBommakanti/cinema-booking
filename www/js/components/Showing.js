@@ -23,26 +23,26 @@ class Showing extends Component {
     this.takenSeats = [];
   }
 
-  mount(){
+  mount() {
     this.id = this.routeParts[0];
-    this.getShowing(this.id);
+    this.getShowtime(this.id);
   }
 
-  get countAll(){
+  get countAll() {
     return this.countAdult + this.countKid + this.countRetired;
   }
 
-  mouseEnterSeat(e, leave = false){
-    if(this.countAll === 0){ return; }
+  mouseEnterSeat(e, leave = false) {
+    if (this.countAll === 0) { return; }
     let me = $(e.currentTarget);
     let seats = $('.seat');
     let myIndex = seats.index(me);
-    for(let i = myIndex; i < myIndex + this.countAll; i++){
+    for (let i = myIndex; i < myIndex + this.countAll; i++) {
       seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
     }
   }
 
-  mouseLeaveSeat(e){
+  mouseLeaveSeat(e) {
     this.mouseEnterSeat(e, true);
   }
 
@@ -67,7 +67,7 @@ class Showing extends Component {
     if (this.countAll > 0) {
       this.bookButton = true;
     }
-    
+
     this.render();
   }
 
@@ -103,7 +103,6 @@ class Showing extends Component {
     return totalPrice;
   }
 
-
   removeBookedSeat() {
     for (let row = 0; row < this.availableSeats.length; row++) {
       for (let seat = 0; seat < this.availableSeats[row].length; seat++) {
@@ -117,7 +116,7 @@ class Showing extends Component {
     }
   }
 
-  async getShowing(id) {
+  async getShowtime(id) {
     this.showing = await Showtime.find(id);
     this.render();
     this.getAuditorium(this.showing.auditorium);
@@ -195,7 +194,7 @@ class Showing extends Component {
     const booking = await new Booking({
       "showTimeDetails": this.id,
       "userId": userId,
-      "seats": this.chosenSeats,
+      "seats": this.chosenSeats.map( seat => seat.seatNum ),
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
@@ -216,18 +215,4 @@ class Showing extends Component {
     $(this.baseEl).find('#bookingModal').modal({ show: true });
 
   }
-
-  async changeSeats(seat) {
-    if(this.chosenSeats > 0 ){
-        this.chosenSeats = [];
-        console.log(this.changeSeats);
-    } 
-    
-    this.chosenSeats.push(seat.seatNum);
-    console.log(this.chosenSeats)
-        
-
-      } 
-
-  
 }
