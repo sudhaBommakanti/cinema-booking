@@ -1,19 +1,40 @@
-<div>
+<div class="movieinfo-div">
     ${!this.movie || !this.movie.title ? 'Ingen film med detta id' : `
-    <h2>${this.movie.title}</h2>
-    <p>${this.movie.description}</p>
-    <p>${this.movie.productionYear}</p>
-    <p>${this.movie.length}</p>
-    <p>${this.movie.genre}</p>
-    <p>${this.movie.distributor}</p>
-    <p>${this.movie.language}</p>
-    <p>${this.movie.subtitles}</p>
-    <p>${this.movie.director}</p>
-    <p>${this.movie.actors.join(',')}</p>
-    <p>${this.movie.productionCountries.join(',')}
-        <p>${this.movie.reviews[0].source} </p>
-        <p>${this.movie.reviews[0].quote} </p>
-        <p>${this.movie.reviews[0].stars}</p>
-        <p>${this.movie.reviews[0].max} </p>
-        <img src="${this.movie.image}" />
-        <embed src="https://www.youtube.com/embed/${this.movie.youtubeTrailers}" allowfullscreen="true" width="425" height="344">`} </div>
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 div-movie">
+                    <h2>${this.movie.title}</h2>
+                    <h5>${this.movie.length} min | ${this.movie.genre}</h5>
+                    <div><span class="key description">${this.movie.description}</span></div>
+                    <div><span class="key">Produktionsår:</span><span class="info"> ${this.movie.productionYear}</span></div>
+                    <div><span class="key">Filmdistributör:</span><span class="info"> ${this.movie.distributor}</span></div>
+                    <div><span class="key">Originalspråk:</span><span class="info"> ${this.movie.language}</span></div>
+                    <div><span class="key">Undertext:</span><span class="info"> ${this.movie.subtitles}</span></div>
+                    <div><span class="key">Regi:</span><span class="info"> ${this.movie.director}</span></div>
+                    <div><span class="key">Skådespelare:</span><span class="info"> ${this.movie.actors.join(',')}</span></div>
+                    <div><span class="key">Produktionsland:</span><span class="info"> ${this.movie.productionCountries.join(',')}</span>
+                    </div>
+                    <div class="buttons-div">
+                        <button>Se trailer</button>
+                        <a href="/showtime" class="button">Boka Biljetter</a>
+                    </div>
+                </div>
+                <div class="col-6 img-col">
+                    <img src="${this.movie.image[0]}" />
+                    <div class="desc">
+                        <p>${this.movie.reviews[0].quote} - <i>${this.movie.reviews[0].source}</i> </p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star not-checked"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>${this.movie.reviews[0].stars}</p>
+    <p>${this.movie.reviews[0].max} </p>
+    <!-- <embed src="https://www.youtube.com/embed/${this.movie.youtubeTrailers}" allowfullscreen="true" width="425" height="344">`}-->
+</div>

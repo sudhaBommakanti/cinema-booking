@@ -1,0 +1,90 @@
+.movieinfo-div {
+    .img-col {
+        max-height: 435px;
+        padding-left: 0;
+        padding-right: 0;
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: absolute;
+        }
+        p {
+            position: relative;
+            color: white;
+            font-family: 'Tinos', serif;
+            font-size: 20px;
+        }
+        i {
+            font-size: 15px;
+        }
+        .checked {
+            color: yellow;
+            position: relative;
+        }
+        .not-checked {
+            color: #e0e2e2;
+        }
+    }
+    .div-movie {
+        border-style: double;
+        color: #c6ab23;
+        border-right: none;
+        border-bottom: none;
+        div {
+            margin-bottom: 11px;
+            font-size: 15px;
+        }
+        .key {
+            color: #a8a8a8;
+        }
+        .description {
+            font-size: 16px;
+        }
+        .info,
+        h2,
+        h5 {
+            color: white;
+        }
+        h2 {
+            font-family: 'Lobster', cursive;
+            font-size: 50px;
+        }
+        .buttons-div {
+            display: flex;
+            justify-content: flex-end;
+            button,
+            a {
+                margin-right: 5px;
+                margin-top: 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                text-transform: uppercase;
+                width: 153px;
+                height: 40px;
+                border-radius: 80px;
+                font-size: 12px;
+                color: #c6ab23;
+                border: 3px solid #c6ab23;
+                overflow: hidden;
+                background: transparent;
+                transition: 0.3s;
+                position: relative;
+                cursor: pointer;
+            }
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.desc {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin-left: 20px;
+}
