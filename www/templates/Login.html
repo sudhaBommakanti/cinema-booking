@@ -1,13 +1,17 @@
 <div class="container">
-  <label for="uname"><b>Email</b></label>
-  <input class="email" type="text" name="uname" required>
+  <div class="row">
+    <div col-md-12>
+      <label for="uname"><b class="emailColor">Email</b></label>
+      <input class="email" type="text" name="uname" required>
 
-  <label for="psw"><b>Lösenord</b></label>
-  <input class="password" type="password" name="psw" required>
+      <label for="psw"><b class="passwordColor">Lösenord</b></label>
+      <input class="password" type="password" name="psw" required>
 
-  <button type="submit" class="submit-btn">Login</button>
-  <button class="register-btn">Registrera</button>
-  <label>
-    <input type="checkbox" checked="checked" name="remember">Kom ihåg mig
-  </label>
+      <button type="submit" class="submit-btn individualButton">Login</button>
+      <button class="register-btn individualButton">Registrera</button>
+      <label class="passwordColor">
+        <input type="checkbox" checked="checked" name="remember">Kom ihåg mig
+      </label>
+    </div>
+  </div>
 </div>

@@ -7,19 +7,21 @@ class MovieInfo extends Component {
         });
     }
 
+    /**
+    *
+    * Get the id from the route and get the movie with that id
+    *
+    */
+
     async mount() {
-        // Get the id from the route
         let id = this.routeParts[0];
-        // Get the movie with that id
         this.movie = await Movie.find(id);
         this.render();
     }
 
     openTrailerModal() {
-        console.log('hehahaehah');
         $(this.baseEl)
             .find('#modal-trailer')
             .modal({ show: true });
-        console.log('hej');
     }
 }

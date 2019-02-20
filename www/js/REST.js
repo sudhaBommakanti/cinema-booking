@@ -1,6 +1,8 @@
-// Base class for other classes
-// that are front end representations
-// of Mongoose models
+/**
+* Base class for other classes
+* That are front end represenations
+* of Mongoose models
+*/
 
 class REST {
 

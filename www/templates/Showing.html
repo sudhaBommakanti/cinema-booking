@@ -1,48 +1,48 @@
 <div>
-    ${this.modal}
-    <div class="row text-center cinemaDiv">
-        <h2 class="col-12 pickTicketSize">Välj antal biljetter</h2>
-        <div class="col-4">
-            <h4 class="personTicketSize">Vuxna (85kr)</h4>
-            <button type="button" class="btn btn remove-adult remove-one selectButton selectButton1">-</button>
-            <span class="adult">${this.countAdult}</span>
-            <button type="button" class="btn btn add-adult add-one selectButton selectButton2">+</button>
-        </div>
-        <div class="col-4">
-            <h4 class="personTicketSize">Barn (65kr)</h4>
-            <button type="button" class="btn btn remove-kid remove-one selectButton selectButton1">-</button>
-            <span class="kid">${this.countKid}</span>
-            <button type="button" class="btn btn add-kid add-one selectButton selectButton2">+</button>
-        </div>
-        <div class="col-4">
-            <h4 class="personTicketSize">Pensionär (75kr)</h4>
-            <button type="button" class="btn btn remove-retired remove-one selectButton selectButton1">-</button>
-            <span class="retired">${this.countRetired}</span>
-            <button type="button" class="btn btn add-retired add-one selectButton selectButton2">+</button>
-        </div>
-        <button class="bookButton" ${this.bookButton ? '' : 'disabled="disabled"' }>Slutför bokning</button>
-        <button class="individualSeats individualButton">Välj separata stolar</button>
-    </div>
-    <div class="row mt-4 MQ">
-        <div class="col-md-3 col-sm-4"></div>
-        <div class="col-md-6 col-sm-4 screen">
-            <div class="row screentext">
-                <div class="shadow-left"></div>
-                <div class="shadow-right"></div>
-                <div class="center-screen">
-                    <div class="audi-left"></div>
-                    <div class="audi-right"></div>
-                    <div class="audi-screen">Bioduk</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-4">
-        </div>
-        <div class="outerWrapper">
-            <div class="innerWrapper">
-                <div class="col-md-3 col-sm-4"></div>
-                <div class="auditorium">${this.auditorium}</div>
-            </div>
-        </div>
-    </div>
+	${this.modal}
+	<div class="row text-center cinemaDiv">
+		<h2 class="col-12 pickTicketSize">Välj antal biljetter</h2>
+		<div class="col-4">
+			<h4 class="personTicketSize">Vuxna (85kr)</h4>
+			<button type="button" class="btn btn remove-adult remove-one selectButton selectButton1">-</button>
+			<span class="adult">${this.countAdult}</span>
+			<button type="button" class="btn btn add-adult add-one selectButton selectButton2">+</button>
+		</div>
+		<div class="col-4">
+			<h4 class="personTicketSize">Barn (65kr)</h4>
+			<button type="button" class="btn btn remove-kid remove-one selectButton selectButton1">-</button>
+			<span class="kid">${this.countKid}</span>
+			<button type="button" class="btn btn add-kid add-one selectButton selectButton2">+</button>
+		</div>
+		<div class="col-4">
+			<h4 class="personTicketSize">Pensionär (75kr)</h4>
+			<button type="button" class="btn btn remove-retired remove-one selectButton selectButton1">-</button>
+			<span class="retired">${this.countRetired}</span>
+			<button type="button" class="btn btn add-retired add-one selectButton selectButton2">+</button>
+		</div>
+		<button class="bookButton" ${this.bookButton ? '' : 'disabled="disabled"' }>Slutför bokning</button>
+		<button class="individualSeats individualButton">Välj separata stolar</button>
+	</div>
+	<div class="row mt-4 MQ">
+		<div class="col-md-3 col-sm-4"></div>
+		<div class="col-md-6 col-sm-4 screen">
+			<div class="row screentext">
+				<div class="shadow-left"></div>
+				<div class="shadow-right"></div>
+				<div class="center-screen">
+					<div class="audi-left"></div>
+					<div class="audi-right"></div>
+					<div class="audi-screen">Bioduk</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3 col-sm-4">
+		</div>
+		<div class="outerWrapper">
+			<div class="innerWrapper">
+				<div class="col-md-3 col-sm-4"></div>
+				<div class="auditorium">${this.auditorium}</div>
+			</div>
+		</div>
+	</div>
 </div>

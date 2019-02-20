@@ -1,54 +1,54 @@
 class MyPage extends Component {
-    constructor(props) {
-        super(props);
-        this.addRoute('/mybookings', 'My Bookings');
-        this.bookings = [];
-        this.tableHead = "";
-        this.bookingHistory = "";
-        this.currentBookings = "";
-        //this.renderBookings();
-        this.bookingInfo = 0;
-        this.rowNum = 0;
-        this.str = "";
+	constructor(props) {
+		super(props);
+		this.addRoute('/mybookings', 'My Bookings');
+		this.bookings = [];
+		this.tableHead = "";
+		this.bookingHistory = "";
+		this.currentBookings = "";
+		this.bookingInfo = 0;
+		this.rowNum = 0;
+		this.str = "";
 
-    }
+	}
 
-    // calling mount method when routing to My Bookings
-    async mount() {
-        this.currentBookings = await this.getBookings();
-        this.bookingHistory = await this.getBookings(true);
-        this.render();
-    }
 
-    async getBookings(history) {
-        let user = await Login.find();
-        this.bookings = await Booking.find(`.find({userId: "${user._id}"}).populate('showTimeDetails').exec()`);
-        //console.log('all bookings', this.bookings);
+	/**
+	*
+	* Calling mount method when routing to My Bookings
+	*
+	*/
 
-        // bokingsHistorik
-        this.bookings = this.bookings.filter((booking)=> {
+	async mount() {
+		this.currentBookings = await this.getBookings();
+		this.bookingHistory = await this.getBookings(true);
+		this.render();
+	}
 
-            let date = new Date (booking.showTimeDetails.date + " " + booking.showTimeDetails.time);
-            if(date < new Date()) {
-                if(history) {
-                    return true;
-                }else {
-                    return false;
-                }
-            } else {
+	async getBookings(history) {
+		let user = await Login.find();
+		this.bookings = await Booking.find(`.find({userId: "${user._id}"}).populate('showTimeDetails').exec()`);
 
-                if(history) {
-                    return false;
-                }else {
-                    return true;
-                }
-            }
-        }) 
-        
+		this.bookings = this.bookings.filter((booking) => {
 
-        console.log('filtered bookings',this.bookings);
+			let date = new Date(booking.showTimeDetails.date + " " + booking.showTimeDetails.time);
+			if (date < new Date()) {
+				if (history) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
 
-        let bookingHistory = `<table class ="table  table-dark">
+				if (history) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		})
+
+		let bookingHistory = `<table class ="table  table-dark">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -62,11 +62,11 @@ class MyPage extends Component {
                 </thead>
                 <tbody>`;
 
-        for (let booking of this.bookings) {
-            
-            this.rowNum++;
-            bookingHistory +=
-                    `<tr>
+		for (let booking of this.bookings) {
+
+			this.rowNum++;
+			bookingHistory +=
+				`<tr>
                         <th scope="row">${this.rowNum}</th> 
                         <td>${booking.bookingNum}</td>
                         <td>${booking.showTimeDetails.film}</td>
@@ -75,12 +75,12 @@ class MyPage extends Component {
                         <td>${booking.seats.join(",")}</td>
                         <td>${booking.totalPrice}</td>
                     </tr>`;
-        }
-        bookingHistory += `
+		}
+		bookingHistory += `
                 </tbody>
             </table>`;
-        return bookingHistory;
-    }
+		return bookingHistory;
+	}
 
-    
+
 }

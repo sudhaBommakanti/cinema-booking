@@ -8,11 +8,17 @@ let bookingSchema = new Schema({
   "userId": { type: Schema.Types.ObjectId, ref: 'User' },
   "totalPrice": Number
 })
-// Here we add a pre save hook that will create a unique booking number
+
+/**
+*
+*Here we add a pre save hook that will create a unique booking number
+* 
+*/
+
 bookingSchema.pre('save', async function () {
   if (this.bookingNum) {
     return
-  } 
+  }
   let characters = 'ABCDEFGHIJKLMNOPQRSTUVXYZ0123456789';
   let uniqueId;
   do {

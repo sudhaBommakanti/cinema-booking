@@ -24,12 +24,22 @@ class Auditorium extends Component {
         seatNum++;
       }
       this.seats.push(seatsInRow);
-      //Sort the seat numbers in a row from high to low
+      /**
+      *
+      * Sort the seat numbers in a row from high to low
+      *
+      */
       this.seats[rowIndex].sort((a, b) => b.seatNum - a.seatNum);
       rowIndex++;
       row++;
     }
   }
+
+  /**
+  *
+  * Function that makes the seat u click become toBeBooked etc.
+  *
+  */
 
   seatClick(e) {
     if (this.individual) {
@@ -56,13 +66,18 @@ class Auditorium extends Component {
     }
   }
 
+  /**
+  *
+  * Function that makes it available to pick individual seats when clicked.
+  *
+  */
+
   seatClickIndividual(e) {
     if (e.currentTarget.classList.contains('alreadyBooked')) {
       return;
     }
     if (this.currentShowing.chosenSeats.length === this.currentShowing.countAll) {
       while (this.currentShowing.chosenSeats.length) {
-        //let seat = this.currentShowing.chosenSeats.pop();
         let seat = this.currentShowing.chosenSeats.pop();
         seat.toBeBooked = false;
         seat.render();
@@ -71,11 +86,8 @@ class Auditorium extends Component {
     let seat = this.seatsBySeatNumber[$(e.currentTarget).attr('data-seat')];
     seat.toBeBooked = seat.toBeBooked ? false : true;
     this.currentShowing.chosenSeats.push(seat);
-    console.log(this.currentShowing.chosenSeats);
     seat.render();
 
-
-    console.log(this.currentShowing.chosenSeats);
   }
 }
 

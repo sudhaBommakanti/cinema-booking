@@ -14,14 +14,17 @@ class Login extends Component {
     return 'login/';
   }
  
+  /**
+  *
+  * To go back to the start page after logged out and loads the web browser
+  *
+  */
+
   async delete() {
     this._id = 1;
     await super.delete();
 
-    // to go back to the start page after looged out
     Router.goto('/');
-    
-    // loads the web browser
     location.reload()
 
     
@@ -43,15 +46,17 @@ class Login extends Component {
       password: $('.password').val()
     });
     let result = await login.save();
-    console.log(result)
     if (result.error) {
-      // replace with something smoother
       alert(result.error);
     }
     App.app.checkIfLoggedIn();
     this.loggedIn = true;
 
-    // Router to go to My bookings page after the user has logged in 
+    /**
+    *
+    * Router that goes to the booking page after the user logged in
+    *
+    */
     Router.goto('/mybookings');
   }
  }
