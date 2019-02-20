@@ -10,7 +10,7 @@ class Router {
 
     listenToATagClicks() {
         let that = this;
-        $(document).on('click', 'a', function(e) {
+        $(document).on('click', 'a', function (e) {
             // assume all links starting with '/' are internal
             let link = $(this).attr('href');
             if (link.indexOf('/') === 0) {
@@ -30,23 +30,18 @@ class Router {
     }
 
     setPath(path) {
-        Router.path = '';
-        //Router.path = Router.routes.includes(path) ? path : '404';
         for (let route of Router.routes) {
-            if (typeof route === 'string' && path === route) {
-                Router.path = path;
+            if (route && route.constructor === RegExp && route.test(path)) {
+                Router.path = route;
+                Router.parts = path.match(route).slice(1);
             }
-            if (
-                typeof route === 'object' &&
-                route.constructor === RegExp &&
-                route.test(path)
-            ) {
+            else if (path === route) {
                 Router.path = route;
             }
         }
-        Router.path = Router.path || '404';
         setTimeout(() => this.setActiveLink(), 0);
     }
+
 
     setActiveLink() {
         $('a').removeClass('active');

@@ -1,21 +1,36 @@
 .modal {
-  position: fixed;
-  top: 142px;
-  right: 0;
-  bottom: 0;
-  left: 0; 
-
+    position: fixed;
+    top: 142px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     &-body {
-      text-align: center;
+        text-align: center;
     }
-
     &-header {
-      text-align: center;
-      justify-content: center;
+        text-align: center;
+        justify-content: center;
     }
-
     &-footer {
-      text-align: center;
-      justify-content: center;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+.modal-wrapper {
+    width: 427px;
+    height: 417px;
+    background: black;
+}
+
+.button-trailer {
+    background: black;
+    color: #761818;
+    border-color: #761818;
+    cursor: pointer;
+    &:hover {
+        background: black;
+        color: #761818;
+        border-color: #761818;
     }
 }
