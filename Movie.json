@@ -14,8 +14,8 @@
             "Zac Efron",
             "Michelle Williams"
         ],
-        "description": "<p>Firar födseln av show buisness och berättar om en visionär som kom från ingenting till att skapa spektakulära fenomen och bli världskänd</p>",
-        "image": "/images/thegreatestshowman.jpg",
+        "description": "<p>Firar födseln av show buisness och berättar om en visionär som kom från ingenting till att skapa spektakulära fenomen och bli världskänd.Föräldralös, oändlig men ambitiös och med ett sinne proppfullt med fantasi och fina idéer, kommer den amerikanska Phineas Taylor Barnum alltid att komma ihåg som mannen med gåvan för att enkelt oskärpa linjen mellan verklighet och fiktion.</p>",
+        "image": ["/images/greatest.png"],
         "youtubeTrailers": "AXCTMGYUg9A",
         "reviews": [{
             "source": "DN",
@@ -42,8 +42,8 @@
             "Sarah Paulson",
             "Jacki Weaver"
         ],
-        "description": "<p>En mamma och hennes två barn försöker hitta säkerhet när något ont drabbar folk.</p>",
-        "image": "/images/birdbox.jpg",
+        "description": "<p>En mamma och hennes två barn försöker hitta säkerhet när något ont drabbar folk. I kölvattnet av en okänd global terror måste en mamma finna styrkan att fly med sina barn ner i en förrädisk flod för att söka säkerhet. På grund av osynliga dödliga krafter måste den farliga resan bländas.</p>",
+        "image": ["/images/birdbox.png"],
         "youtubeTrailers": "o2AsIXSh2xo",
         "reviews": [{
                 "source": "Svenska Dagbladet",
@@ -71,8 +71,8 @@
         "subtitles": "svenska",
         "director": "Bradley Cooper",
         "actors": ["Bradley Cooper", "Lady Gaga", "Sam Elliot", "Andrew Dice Clay"],
-        "description": "<p>En musiker hjälper en ung sångare hitta berömmelse.</p>",
-        "image": "/images/astarisborn.png",
+        "description": "<p>En musiker hjälper en ung sångare hitta berömmelse. Musiker Jackson Maine upptäcker - och blir kär i kämpande konstnär Ally. Hon har just givit upp sin dröm för att göra den stor som en sångare - tills Jack kastar henne in i rampljuset. Men även när Allys karriär tar slut, bryter den personliga sidan av deras förhållande ner, eftersom Jack slår en pågående kamp med sina egna inre demoner.</p>",
+        "image": ["/images/astarisborn.png"],
         "youtubeTrailers": "nSbzyEJ8X9E",
         "reviews": [{
             "source": "Aftonbladet",
@@ -93,8 +93,8 @@
         "subtitles": "svenska",
         "director": "Thea Sharrock",
         "actors": ["Sam Claflin", "Vanessa Kirby", "Emilia Clarke"],
-        "description": "<p>En tjej i en liten stad formar ett speciellt förhållande med en paralyserad man hon tar hand om.</p>",
-        "image": "/images/mebeforeyou.png",
+        "description": "<p>Lou Clark vet massor av saker.Hon vet hur många fotspår det finns mellan busshållplatsen och hemmet.Hon vet att hon gillar att jobba i The Buttered Bun - tebutiken och hon vet att hon kanske inte älskar sin pojkvän Patrick.Vad Lou inte vet är att hon ska förlora sitt jobb eller att veta vad som kommer är det som håller henne vettigt.Kommer Traynor att veta en bilolycka tog bort hans önskan att leva. < /p>",
+        "image": ["/images/mebeforeyou.png"],
         "youtubeTrailers": "T0MmkG_nG1U",
         "reviews": [{
             "source": "Expressen",
@@ -121,8 +121,8 @@
             "Liv Tyler",
             "Steve Buscemi"
         ],
-        "description": "<p>Brave men, women and a crazy russian saves the world!.</p>",
-        "image": "/images/armageddon.jpg",
+        "description": "<p>Det är bara en dag på NASA, några astronauter reparerade en satellit tills uteslutet kom en serie av asteroider i kraschen och förstörde den. Dessa asteroider decimerade också New York kort därefter. Därefter upptäckte NASA att det finns en asteroid som är ungefär storleken på Texas på väg mot jorden, och när den slår på jorden, kommer planeten själv och alla dess invånare att utplånas, värre, asteroiden kommer att slå jorden på 18 dagar..</p>",
+        "image": ["/images/armageddon.png"],
         "youtubeTrailers": "PSrmvsvLzbY",
         "reviews": [{
             "source": "Göteborgs Posten",
