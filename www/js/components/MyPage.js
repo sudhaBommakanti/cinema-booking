@@ -5,33 +5,56 @@ class MyPage extends Component {
         this.bookings = [];
         this.tableHead = "";
         this.bookingHistory = "";
-        this.getBookingHistory();
-        this.getCurrentBooking();
+        this.currentBookings = "";
+        this.renderBookings();
         this.bookingInfo = 0;
         this.rowNum = 0;
         this.str = "";
 
     }
+    async renderBookings() {
+        this.currentBookings = await this.getBookings();
+        this.bookingHistory = await this.getBookings(true);
+        this.render();
+    }
 
-    async getBookingHistory() {
+    async getBookings(history) {
         let user = await Login.find();
         this.bookings = await Booking.find(`.find({userId: "${user._id}"}).populate('showTimeDetails').exec()`);
-        // console.log(this.bookings.showTimeDetails);
+        //console.log('all bookings', this.bookings);
+
+        // bokingsHistorik
+        this.bookings = this.bookings.filter((booking)=> {
+
+            let date = new Date (booking.showTimeDetails.date + " " + booking.showTimeDetails.time);
+            if(date < new Date()) {
+                if(history) {
+                    return true;
+                }else {
+                    return false;
+                }
+            } else {
+
+                if(history) {
+                    return false;
+                }else {
+                    return true;
+                }
+            }
+        }) 
         
 
-        console.log(this.bookings);
-        this.bookingHistory = `<table class="table">
+        console.log('filtered bookings',this.bookings);
+
+        let bookingHistory = `<table class="table table-dark">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">BookingNum</th>
-                        <th scope = "col">Auditorium</th>
                         <th scope = "col">Movie Name</th>
                         <th scope = "col">Date</th>
                         <th scope = "col">Time</th>
-                        <th scope="col">ShowTimeDetails</th>
                         <th scope="col">Seats</th>
-                        <th scope="col">Userid</th>
                         <th scope="col">totalPrice</th>
                     </tr>
                 </thead>
@@ -40,61 +63,22 @@ class MyPage extends Component {
         for (let booking of this.bookings) {
             
             this.rowNum++;
-
-            let bookingNum = booking.bookingNum;
-            console.log(bookingNum);
-
-            let showTimeDetails = booking.showTimeDetails;
-            console.log(showTimeDetails);
-            
-            let seats = booking.seats;
-            console.log(seats);
-            
-            let userID = booking.userId;
-            console.log(userID);
-
-            let totalPrice = booking.totalPrice;
-            console.log(totalPrice);
-
-            this.bookingHistory +=
+            bookingHistory +=
                     `<tr>
                         <th scope="row">${this.rowNum}</th> 
-                        <td>${bookingNum}</td>
-                        <td>${bookingNum}</td>
-                        <td>${bookingNum}</td>
-                        <td>${bookingNum}</td>
-                        <td>${bookingNum}</td>
-                        <td>${showTimeDetails}</td>
-                        <td>${seats.join(",")}</td>
-                        <td>${userID}</td>
-                        <td>${totalPrice}</td>
+                        <td>${booking.bookingNum}</td>
+                        <td>${booking.showTimeDetails.film}</td>
+                        <td>${booking.showTimeDetails.date}</td>
+                        <td>${booking.showTimeDetails.time}</td>
+                        <td>${booking.seats.join(",")}</td>
+                        <td>${booking.totalPrice}</td>
                     </tr>`;
         }
-        this.bookingHistory += `
+        bookingHistory += `
                 </tbody>
             </table>`;
-
-        this.render();
+        return bookingHistory;
     }
 
-    async getCurrentBooking() {
-        let user = await Login.find();
-        this.bookings = await Booking.find(`.find({userId: "${user._id}"})`);
-        //let currentDate = 0;
-        
-        //let bookingDate = new Date(booking.date); 
-        for(let booking of this.bookings) {
-            var today = new Date();
-            var bookingDate = booking.date;
-            if(today > bookingDate) {
-               
-            }
-            else {
-                
-            }
-            console.log("HEJJJJ");
-        }
-        this.render();
-    }
     
 }
