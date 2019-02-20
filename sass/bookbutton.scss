@@ -13,6 +13,69 @@
   transition: .3s;
   position: relative;
   cursor: pointer;
+  margin-right: 14px;
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #761818;
+    position: absolute;
+    opacity: .5;
+    top: -100%;
+    left: 0;
+    z-index: -1;
+    transition: .3s;
+
+  }
+
+  &:after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #761818;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: -1;
+    transition: .3s;
+    transition-delay: .2s;
+
+  }
+
+  &:hover {
+    color: #181a1c;
+    font-weight: bold;
+  }
+
+  &:hover:before {
+    top: 0;
+  }
+
+  &:hover:after {
+    top: 0;
+  }
+
+  &:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+  }
+}
+
+.individualButton {
+  margin-top: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  width: 153px;
+  height: 40px;
+  border-radius: 80px;
+  font-size: 12px;
+  color: #761818;
+  border: 3px solid #761818;
+  overflow: hidden;
+  background: transparent;
+  transition: .3s;
+  position: relative;
+  cursor: pointer;
 
   &:before {
     content: '';
