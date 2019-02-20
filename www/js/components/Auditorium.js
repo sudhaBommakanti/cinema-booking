@@ -32,33 +32,50 @@ class Auditorium extends Component {
   }
 
   seatClick(e) {
+    if (this.individual) {
+      this.seatClickIndividual(e);
+      return;
+    }
     if (e.currentTarget.classList.contains('alreadyBooked')) {
       return;
     }
+
     while (this.currentShowing.chosenSeats.length) {
       let seat = this.currentShowing.chosenSeats.pop();
       seat.toBeBooked = false;
       seat.render();
     }
+
     let seats = $('.seat');
     let myIndex = seats.index(e.currentTarget);
-    if (this.individual && this.currentShowing.chosenSeats.length < this.currentShowing.countAll) {
-      let seat = this.seatsBySeatNumber[$(e.currentTarget).attr('data-seat')];
+    for (let i = myIndex; i < myIndex + this.currentShowing.countAll; i++) {
+      let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
       seat.toBeBooked = seat.toBeBooked ? false : true;
       this.currentShowing.chosenSeats.push(seat);
-      console.log(this.currentShowing.chosenSeats);
-      
       seat.render();
-    } 
-    else if (this.individual === false) {
-      for (let i = myIndex; i < myIndex + this.currentShowing.countAll; i++) {
-        let seat = this.seatsBySeatNumber[seats.eq(i).attr('data-seat')];
-        seat.toBeBooked = seat.toBeBooked ? false : true;
-        this.currentShowing.chosenSeats.push(seat);
+    }
+  }
+
+  seatClickIndividual(e) {
+    if (e.currentTarget.classList.contains('alreadyBooked')) {
+      return;
+    }
+    if (this.currentShowing.chosenSeats.length === this.currentShowing.countAll) {
+      while (this.currentShowing.chosenSeats.length) {
+        //let seat = this.currentShowing.chosenSeats.pop();
+        let seat = this.currentShowing.chosenSeats.pop();
+        seat.toBeBooked = false;
         seat.render();
       }
     }
+    let seat = this.seatsBySeatNumber[$(e.currentTarget).attr('data-seat')];
+    seat.toBeBooked = seat.toBeBooked ? false : true;
+    this.currentShowing.chosenSeats.push(seat);
+    console.log(this.currentShowing.chosenSeats);
+    seat.render();
+
+
+    console.log(this.currentShowing.chosenSeats);
   }
 }
-
 

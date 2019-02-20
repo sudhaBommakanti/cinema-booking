@@ -32,20 +32,24 @@ class Showing extends Component {
   get countAll() {
     return this.countAdult + this.countKid + this.countRetired;
   }
- 
-individualTrueOrFalse(){
-  console.log('hej');
-  
-  this.auditorium.individual = !this.auditorium.individual ? true : false; 
-}
+
+  individualTrueOrFalse() {
+    this.auditorium.individual = !this.auditorium.individual ? true : false;
+  }
 
   mouseEnterSeat(e, leave = false) {
-    if (this.countAll === 0) { return; }
     let me = $(e.currentTarget);
     let seats = $('.seat');
     let myIndex = seats.index(me);
-    for (let i = myIndex; i < myIndex + this.countAll; i++) {
-      seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
+    if (!this.auditorium.individual) {
+      if (this.countAll === 0) { return; }
+      for (let i = myIndex; i < myIndex + this.countAll; i++) {
+        seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
+      }
+    }
+    else if (this.auditorium.individual) {
+      if (this.countAll === 0) { return; }
+      seats.eq(myIndex)[leave ? 'removeClass' : 'addClass']('hover');
     }
   }
 
@@ -201,7 +205,7 @@ individualTrueOrFalse(){
     const booking = await new Booking({
       "showTimeDetails": this.id,
       "userId": userId,
-      "seats": this.chosenSeats.map( seat => seat.seatNum ),
+      "seats": this.chosenSeats.map(seat => seat.seatNum),
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
