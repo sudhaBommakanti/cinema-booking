@@ -1,3 +1,9 @@
+.movieinfo-container {
+    border-style: double;
+    color: #c6ab23;
+    border-bottom: none;
+}
+
 .movieinfo-div {
     .img-col {
         max-height: 435px;
@@ -10,7 +16,6 @@
             position: absolute;
         }
         p {
-            position: relative;
             color: white;
             font-family: 'Tinos', serif;
             font-size: 20px;
@@ -20,15 +25,12 @@
         }
         .checked {
             color: yellow;
-            position: relative;
         }
         .not-checked {
             color: #e0e2e2;
         }
     }
     .div-movie {
-        border-style: double;
-        color: #c6ab23;
         border-right: none;
         border-bottom: none;
         div {
@@ -82,9 +84,10 @@
 }
 
 .desc {
-    position: absolute;
+    position: relative;
     width: 100%;
     bottom: 0;
     left: 0;
     margin-left: 20px;
+    margin-top: 80%;
 }
