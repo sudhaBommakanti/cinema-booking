@@ -15,7 +15,7 @@ class MyPage extends Component {
 
     async getBookingHistory() {
         let user = await Login.find();
-        this.bookings = await Booking.find(`.find({userId: "${user._id}"})`);
+        this.bookings = await Booking.find(`.find({userId: "${user._id}"}).populate('showTimeDetails').exec()`);
         // console.log(this.bookings.showTimeDetails);
         
 
