@@ -1,0 +1,24 @@
+
+
+.bookHisDev {
+    color: white;
+}
+
+
+
+
+h2 {
+    text-align: center;
+   
+    float: left;
+}
+
+@media screen and (max-width: 361px) {
+
+.historyTable > .table {
+    
+    width:80%;
+    padding:20px;
+}
+
+}
