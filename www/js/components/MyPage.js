@@ -6,13 +6,15 @@ class MyPage extends Component {
         this.tableHead = "";
         this.bookingHistory = "";
         this.currentBookings = "";
-        this.renderBookings();
+        //this.renderBookings();
         this.bookingInfo = 0;
         this.rowNum = 0;
         this.str = "";
 
     }
-    async renderBookings() {
+
+    // calling mount method when routing to My Bookings
+    async mount() {
         this.currentBookings = await this.getBookings();
         this.bookingHistory = await this.getBookings(true);
         this.render();
@@ -46,7 +48,7 @@ class MyPage extends Component {
 
         console.log('filtered bookings',this.bookings);
 
-        let bookingHistory = `<table class="table table-dark">
+        let bookingHistory = `<table class ="table  table-dark">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

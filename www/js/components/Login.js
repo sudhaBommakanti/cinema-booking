@@ -2,8 +2,10 @@ class Login extends Component {
     constructor(props) {
     super(props);
     this.addRoute('/login', 'Logga in');
+    
     this.addEvents({
       'click .submit-btn': 'login',
+
       'click .register-btn': 'register'
     })
     this.loggedIn = false;
@@ -14,7 +16,15 @@ class Login extends Component {
  
   async delete() {
     this._id = 1;
-    return super.delete();
+    await super.delete();
+
+    // to go back to the start page after looged out
+    Router.goto('/');
+    
+    // loads the web browser
+    location.reload()
+
+    
   }
  
   async register() {
@@ -40,6 +50,8 @@ class Login extends Component {
     }
     App.app.checkIfLoggedIn();
     this.loggedIn = true;
-    this.render();
+
+    // Router to go to My bookings page after the user has logged in 
+    Router.goto('/mybookings');
   }
  }

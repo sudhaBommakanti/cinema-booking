@@ -129,12 +129,18 @@ class Showing extends Component {
 
   async getShowtime(id) {
     this.showing = await Showtime.find(id);
-    this.render();
+    console.log(this.showing);
+    //this.render();
     this.getAuditorium(this.showing.auditorium);
   }
 
   async getAuditorium(showtimeAudiId) {
+    if(!showtimeAudiId) {
+      console.error("showtimeId missing");
+      return
+    } 
     this.auditorium = await Auditorium.find(showtimeAudiId);
+    console.log(this.auditorium);
 
     // Ta tag i alla bokningar
     let allBookings = await Booking.find(`.find({showTimeDetails: "${this.id}"})`);

@@ -1,8 +1,13 @@
-.footer {
-  background-color: #761818;
-  color: white;
-  vertical-align: middle;
-  line-height: 40px;
+// Galaxy s5 screeen
+@media screen and (max-width: 361px) {
+
+  .footer {
+    background-color: #761818;
+    color: white;
+    vertical-align: middle;
+    line-height: 40px;
+  }
+  
 }
   
 body > div {

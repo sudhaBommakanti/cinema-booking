@@ -2,6 +2,8 @@ class Router {
     constructor(mainInstance) {
         // The mainInstance is the object that should
         // be rerendered on route changes
+        // added Router instance 
+        Router.instance = this;
         this.mainInstance = mainInstance;
         this.listenToATagClicks();
         this.listenToBackForward();
@@ -50,6 +52,13 @@ class Router {
 
     static registerRoute(route) {
         Router.routes.push(route);
+    }
+
+    // updated Router goto Static and added this.instance to setPath and mainInstance
+    static goto(path){
+        history.pushState(null, null, path);
+        this.instance.setPath(path);
+        this.instance.mainInstance.render();
     }
 }
 
