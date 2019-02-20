@@ -10,6 +10,7 @@ class Showing extends Component {
       'click .bookButton': 'sendBooking',
       'mouseenter .seat': 'mouseEnterSeat',
       'mouseleave .seat': 'mouseLeaveSeat',
+      'click .individualSeats': 'individualTrueOrFalse'
     });
     this.countAdult = 0;
     this.countKid = 0;
@@ -32,13 +33,23 @@ class Showing extends Component {
     return this.countAdult + this.countKid + this.countRetired;
   }
 
+  individualTrueOrFalse() {
+    this.auditorium.individual = !this.auditorium.individual ? true : false;
+  }
+
   mouseEnterSeat(e, leave = false) {
-    if (this.countAll === 0) { return; }
     let me = $(e.currentTarget);
     let seats = $('.seat');
     let myIndex = seats.index(me);
-    for (let i = myIndex; i < myIndex + this.countAll; i++) {
-      seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
+    if (!this.auditorium.individual) {
+      if (this.countAll === 0) { return; }
+      for (let i = myIndex; i < myIndex + this.countAll; i++) {
+        seats.eq(i)[leave ? 'removeClass' : 'addClass']('hover');
+      }
+    }
+    else if (this.auditorium.individual) {
+      if (this.countAll === 0) { return; }
+      seats.eq(myIndex)[leave ? 'removeClass' : 'addClass']('hover');
     }
   }
 
@@ -194,7 +205,7 @@ class Showing extends Component {
     const booking = await new Booking({
       "showTimeDetails": this.id,
       "userId": userId,
-      "seats": this.chosenSeats.map( seat => seat.seatNum ),
+      "seats": this.chosenSeats.map(seat => seat.seatNum),
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
