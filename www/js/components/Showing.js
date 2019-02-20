@@ -209,7 +209,10 @@ class Showing extends Component {
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
+  
+
     bookingInfo = await Booking.find(".findById('" + bookingInfo._id + "').populate('showTimeDetails').exec()");
+    console.log(bookingInfo);
     let auditorium = await Auditorium.find(".findById('" + bookingInfo.showTimeDetails.auditorium + "').exec()");
     console.log(bookingInfo, auditorium);
     let modalData = {
