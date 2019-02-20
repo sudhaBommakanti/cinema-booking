@@ -50,12 +50,12 @@ class MyPage extends Component {
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">BookingNum</th>
-                        <th scope = "col">Movie Name</th>
-                        <th scope = "col">Date</th>
-                        <th scope = "col">Time</th>
-                        <th scope="col">Seats</th>
-                        <th scope="col">totalPrice</th>
+                        <th scope="col">Bokningsnummer</th>
+                        <th scope = "col">Film</th>
+                        <th scope = "col">Datum</th>
+                        <th scope = "col">Tid</th>
+                        <th scope="col">Säten</th>
+                        <th scope="col">Totalpris</th>
                     </tr>
                 </thead>
                 <tbody>`;
