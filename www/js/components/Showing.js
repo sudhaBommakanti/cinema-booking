@@ -140,6 +140,14 @@ class Showing extends Component {
       }
     }
 
+    console.log("taken seats", this.takenSeats)
+    //this.bestSeats = this.auditorium.bestSeats.slice();
+    this.auditorium.bestSeats = this.auditorium.bestSeats.filter((seatNumber) => {
+      return !this.takenSeats.includes(seatNumber);
+
+    })
+    console.log("bestseat", this.auditorium.bestSeats)
+    
     for (const seatRow of this.auditorium.seats) {
       for (const seat of seatRow) {
         if (this.takenSeats.indexOf(seat.seatNum) == -1) {
@@ -194,7 +202,7 @@ class Showing extends Component {
     const booking = await new Booking({
       "showTimeDetails": this.id,
       "userId": userId,
-      "seats": this.chosenSeats.map( seat => seat.seatNum ),
+      "seats": this.chosenSeats.map(seat => seat.seatNum),
       "totalPrice": this.countTotalPrice()
     });
     let bookingInfo = await booking.save();
@@ -216,10 +224,19 @@ class Showing extends Component {
 
   }
 
-  async selectBestSeats(){
-    
-    this.auditorium.bestSeats;
-  
+  selectBestSeats() {
+    //this.auditorium.seatsBySeatNumber[5].toBeBooked = true;
+    let amount = this.countAll;
+    let selected = this.auditorium.bestSeats.slice(0, amount);
+    console.log(amount)
+    //console.log(selected)
+    for (let number of selected) {
+      this.auditorium.seatsBySeatNumber[number].toBeBooked = true;
+      if(!this.chosenSeats.includes(this.auditorium.seatsBySeatNumber[number])){
+        this.chosenSeats.push(this.auditorium.seatsBySeatNumber[number]);
+      }
+    }
 
   }
+
 }
