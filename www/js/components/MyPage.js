@@ -49,7 +49,7 @@ class MyPage extends Component {
 		})
 
 		let bookingHistory = `<table class ="table  table-dark">
-                <thead>
+                <thead class = "table_header">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Bokningsnummer</th>
