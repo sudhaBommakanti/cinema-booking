@@ -1,51 +1,52 @@
 <div class="movieinfo-div">
-	${!this.movie || !this.movie.title ? 'Ingen film med detta id' : `
-	<div class="container-wrapper">
-		<div class="container movieinfo-container">
-			<div class="row">
-				<div class="col-md-6 div-movie">
-					<h2>${this.movie.title}</h2>
-					<h5 class="margin-fix">${this.movie.length} min | ${this.movie.genre}</h5>
-					<div><span class="key description">${this.movie.description}</span></div>
-					<div class="div-info"><span class="key">Produktionsår:</span><span class="info"> ${this.movie.productionYear}</span></div>
-					<div class="div-info"><span class="key">Filmdistributör:</span><span class="info"> ${this.movie.distributor}</span></div>
-					<div class="div-info"><span class="key">Originalspråk:</span><span class="info"> ${this.movie.language}</span></div>
-					<div class="div-info"><span class="key">Undertext:</span><span class="info"> ${this.movie.subtitles}</span></div>
-					<div class="div-info"><span class="key">Regi:</span><span class="info"> ${this.movie.director}</span></div>
-					<div class="div-info"><span class="key">Skådespelare:</span><span class="info"> ${this.movie.actors.join(',')}</span></div>
-					<div class="div-info"><span class="key">Produktionsland:</span><span class="info">
+    ${!this.movie || !this.movie.title ? 'Ingen film med detta id' : `
+    <div class="container-wrapper">
+        <div class="container movieinfo-container">
+            <div class="row">
+                <div class="col-md-6 div-movie">
+                    <div class="birdbox-title">
+                        <h2>${this.movie.title}</h2>
+                    </div>
+                    <h5 class="margin-fix">${this.movie.length} min | ${this.movie.genre}</h5>
+                    <div><span class="key description">${this.movie.description}</span></div>
+                    <div class="div-info"><span class="key">Produktionsår:</span><span class="info"> ${this.movie.productionYear}</span></div>
+                    <div class="div-info"><span class="key">Filmdistributör:</span><span class="info"> ${this.movie.distributor}</span></div>
+                    <div class="div-info"><span class="key">Originalspråk:</span><span class="info"> ${this.movie.language}</span></div>
+                    <div class="div-info"><span class="key">Undertext:</span><span class="info"> ${this.movie.subtitles}</span></div>
+                    <div class="div-info"><span class="key">Regi:</span><span class="info"> ${this.movie.director}</span></div>
+                    <div class="div-info"><span class="key">Skådespelare:</span><span class="info"> ${this.movie.actors.join(',')}</span></div>
+                    <div class="div-info"><span class="key">Produktionsland:</span><span class="info">
 							${this.movie.productionCountries.join(',')}</span>
-					</div>
-					<div class="buttons-div">
-						<button>Se trailer</button>
-						<a href="/showtime" class="button">Boka Biljetter</a>
-					</div>
-				</div>
-				<div class="col-md-6 img-col">
-					<img src="${this.movie.image[0]}" />
-					<div class="desc">
-						<p>${this.movie.reviews[0].quote} - <i>${this.movie.reviews[0].source}</i> </p>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star not-checked"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<p>${this.movie.reviews[0].stars}</p>
-	<p>${this.movie.reviews[0].max} </p>
-	<div class="modal" id="modal-trailer" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content modal-wrapper">
-				<p><embed src="https://www.youtube.com/embed/${this.movie.youtubeTrailers}" allowfullscreen="true" width="425"
-					 height="344"></p>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary button-trailer" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                    <div class="buttons-div">
+                        <button>Se trailer</button>
+                        <a href="/showtime" class="button">Boka Biljetter</a>
+                    </div>
+                </div>
+                <div class="col-md-6 img-col">
+                    <img src="${this.movie.image[0]}" />
+                    <div class="desc">
+                        <p>${this.movie.reviews[0].quote} - <i>${this.movie.reviews[0].source}</i> </p>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star not-checked"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>${this.movie.reviews[0].stars}</p>
+    <p>${this.movie.reviews[0].max} </p>
+    <div class="modal" id="modal-trailer" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-wrapper">
+                <p><embed src="https://www.youtube.com/embed/${this.movie.youtubeTrailers}" allowfullscreen="true" width="425" height="344"></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary button-trailer" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>`}

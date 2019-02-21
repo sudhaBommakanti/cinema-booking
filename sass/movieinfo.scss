@@ -33,6 +33,9 @@
     .div-movie {
         border-right: none;
         border-bottom: none;
+        .birdbox-title {
+            display: inline-block;
+        }
         div {
             margin-bottom: 11px;
             font-size: 15px;
@@ -47,7 +50,6 @@
         h2,
         h5 {
             color: white;
-
         }
         h2 {
             font-family: 'Lobster', cursive;

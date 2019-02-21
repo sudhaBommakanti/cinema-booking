@@ -1,58 +1,57 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <label for="uname" class="emailColor">Email</label>
-      <input type="email" class="form-control email">
-    </div>
-    <div class="col-md-3"></div>
-  </div>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <label for="psw" class="passwordColor">Lösenord</label>
-      <input type="password" class="form-control password" required>
-    </div>
-    <div class="col-md-3"></div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-6 text-right">
-      <button type="submit" class="submit-btn individualButton">Logga in</button>
-    </div>
-    <div class="col-6 text-left">
-      <button class="register-btn individualButton">Registrera</button>
-    </div>
-    ${this.createAccount ? `<div class="col-12 mt-3 success">
-        <p class="text-center">Kontot har skapats</p>
-      </div>` : ''}
-  </div>
-  <div class="modal" id="registerModalEmail" tabindex="-1" role="dialog" aria-labelledby="loginModalEmail"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>Var god skriv en giltig email adress.</p>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <label for="uname" class="emailColor">Email</label>
+            <input type="email" class="form-control email">
         </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal">Stäng</a>
-        </div>
-      </div>
+        <div class="col-md-3"></div>
     </div>
-  </div>
-  <div class="modal" id="registerModalPassword" tabindex="-1" role="dialog" aria-labelledby="registerModalPassword"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h5>Lösenordet måste innehålla följande:</h5>
-          <p>Minst åtta tecken</p>
-          <p>Minst en siffra</p>
-          <p>Minst en bokstav</p>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <label for="psw" class="passwordColor">Lösenord</label>
+            <input type="password" class="form-control password" required>
         </div>
-        <div class="modal-footer">
-          <a href="#" data-dismiss="modal">Stäng</a>
-        </div>
-      </div>
+        <div class="col-md-3"></div>
     </div>
-  </div>
+    <div class="row mt-3">
+        <div class="col-sm-12 col-md-6 text-md-right">
+            <button type="submit" class="submit-btn individualButton">Logga in</button>
+        </div>
+        <div class="col-sm-12 col-md-6 text-md-left">
+            <button class="register-btn individualButton">Registrera</button>
+        </div>
+        ${this.createAccount ? `
+        <div class="col-12 mt-3 success">
+            <p class="text-center">Kontot har skapats</p>
+        </div>` : ''}
+    </div>
+    <div class="modal" id="registerModalEmail" tabindex="-1" role="dialog" aria-labelledby="loginModalEmail" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Var god skriv en giltig email adress.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal">Stäng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="registerModalPassword" tabindex="-1" role="dialog" aria-labelledby="registerModalPassword" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5>Lösenordet måste innehålla följande:</h5>
+                    <p>Minst åtta tecken</p>
+                    <p>Minst en siffra</p>
+                    <p>Minst en bokstav</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal">Stäng</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
