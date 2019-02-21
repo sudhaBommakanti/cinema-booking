@@ -1,7 +1,14 @@
-<div>
-  <h3 class="movie-title" data-id="${this._id}"><a class="movie-color" href="/film/${this._id}">${this.title}</a>
-  </h3>
-  <p>
-    ${this.showtimes}
-  </p>
+<div class="row">
+    <div class="col-12">
+        <h3 class="movie-title" data-id="${this._id}"><a class="movie-color" href="/film/${this._id}">${this.title}</a>
+        </h3>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <img class="booking-image thegreat" src="${this.image[1]}">
+    </div>
+    <div class="col-sm-12 col-md-8 align-top">
+        <p>
+            ${this.showtimes}
+        </p>
+    </div>
 </div>
