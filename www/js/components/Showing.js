@@ -240,16 +240,14 @@ class Showing extends Component {
           * If seat is booked send a notification to the user that the seat is already booked.
           *
           */
-          if (bookedSeat == chosenSeat) {
-            alert(`Alert Alert! The seat ${chosenSeat} is already booked. Please choose another seat`);
-            return;
-          }
-          else {
-            this.createBooking();
+          if (bookedSeat == chosenSeat.seatNum) {
+            alert(`Alert Alert! The seat ${chosenSeat.seatNum} is already booked. Please choose another seat`);
             return;
           }
         }
       }
+      this.createBooking();
+      return;
     }
   }
 
