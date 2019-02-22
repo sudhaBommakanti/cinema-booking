@@ -48,7 +48,7 @@ class MyPage extends Component {
 			}
 		})
 
-		let bookingHistory = `<table class ="table  table-dark">
+		let bookingHistory = `<table class ="table  table-dark table-responsive">
                 <thead class = "table_header">
                     <tr>
                         <th scope="col">#</th>
@@ -73,7 +73,7 @@ class MyPage extends Component {
                         <td>${booking.showTimeDetails.date}</td>
                         <td>${booking.showTimeDetails.time}</td>
                         <td>${booking.seats.join(",")}</td>
-                        <td>${booking.totalPrice}</td>
+                        <td>${booking.totalPrice} kr</td>
                     </tr>`;
 		}
 		bookingHistory += `
