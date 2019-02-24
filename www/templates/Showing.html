@@ -11,21 +11,21 @@
       Tid: ${this.showing === undefined ? '' : this.showing.time }
     </p>
   </div>
-  <div class="row mt-4 text-center cinemaDiv">
+  <div class="row pt-3 mt-4 text-center cinemaDiv">
     <h2 class="col-12 pickTicketSize">Välj antal biljetter</h2>
-    <div class="col-4">
+    <div class="col-sm-12 mb-1 col-md-4">
       <h4 class="personTicketSize">Vuxna (85kr)</h4>
       <button type="button" class="btn btn remove-adult remove-one selectButton selectButton1">-</button>
       <span class="adult">${this.countAdult}</span>
       <button type="button" class="btn btn add-adult add-one selectButton selectButton2">+</button>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 mb-1 col-md-4">
       <h4 class="personTicketSize">Barn (65kr)</h4>
       <button type="button" class="btn btn remove-kid remove-one selectButton selectButton1">-</button>
       <span class="kid">${this.countKid}</span>
       <button type="button" class="btn btn add-kid add-one selectButton selectButton2">+</button>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 mb-1 col-md-4">
       <h4 class="personTicketSize">Pensionär (75kr)</h4>
       <button type="button" class="btn btn remove-retired remove-one selectButton selectButton1">-</button>
       <span class="retired">${this.countRetired}</span>
@@ -51,6 +51,6 @@
     </div>
   </div>
   <div class="row mt-5 text-center">
-      <div class="col-12">${this.auditorium}</div>
+    <div class="col-12">${this.auditorium}</div>
   </div>
 </div>
